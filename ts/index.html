@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- <h1 id="yearTitle"></h1>
+    <div class="year" id="calendar"></div> -->
+
+    <div class="app">
+      <h1>🛒 E-Commerce System</h1>
+
+      <div class="box">
+        <h2>Add Product</h2>
+
+        <input id="pName" placeholder="Name" />
+        <input id="pPrice" type="number" placeholder="Price" />
+        <input id="pStock" type="number" placeholder="Stock" />
+        <input id="pCategory" placeholder="Category" />
+
+        <button onclick="uiAddProduct()">Add Product</button>
+      </div>
+
+      <div class="box">
+        <h2>Add User</h2>
+
+        <input id="uName" placeholder="User Name" />
+
+        <button onclick="uiAddUser()">Add User</button>
+      </div>
+
+      <div class="box">
+        <h2>Products</h2>
+        <div id="products"></div>
+      </div>
+
+      <div class="box">
+        <h2>Users</h2>
+        <div id="users"></div>
+      </div>
+
+      <div class="box">
+        <h2>Cart</h2>
+        <div id="cart"></div>
+      </div>
+    </div>
+
+    <script src="./js/typescript.js"></script>
+  </body>
+</html>

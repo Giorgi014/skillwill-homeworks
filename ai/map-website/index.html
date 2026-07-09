@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batumi Central Park — 6 May Park</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&family=Noto+Sans+Georgian:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">×</button>
+  <img id="lightboxImg" src="" alt="">
+  <a id="lightboxMapsLink" href="#" target="_blank" rel="noopener" style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.5);color:#e8c96d;font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;padding:10px 24px;text-decoration:none;cursor:none;transition:background 0.3s;">↗ Open in Google Maps</a>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()" data-i18n="nav.about">About</a>
+  <a href="#gallery" onclick="closeMobile()" data-i18n="nav.gallery">Gallery</a>
+  <a href="#attractions" onclick="closeMobile()" data-i18n="nav.attractions">Attractions</a>
+  <a href="#history" onclick="closeMobile()" data-i18n="nav.history">History</a>
+  <a href="#location" onclick="closeMobile()" data-i18n="nav.location">Location</a>
+  <a href="#tips" onclick="closeMobile()" data-i18n="nav.tips">Visit Tips</a>
+  <div class="mobile-lang">
+    <div class="lang-switcher" id="swMobile">
+      <div class="lang-pill" id="pillMobile"></div>
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ka">ქარ</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Batumi <span>Park</span></a>
+  <ul class="nav-links">
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+    <li><a href="#attractions" data-i18n="nav.attractions">Attractions</a></li>
+    <li><a href="#history" data-i18n="nav.history">History</a></li>
+    <li><a href="#location" data-i18n="nav.location">Location</a></li>
+    <li><a href="#tips" data-i18n="nav.tips">Visit Tips</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher" id="swDesktop">
+      <div class="lang-pill" id="pillDesktop"></div>
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ka">ქარ</button>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-i18n="hero.badge">Since 1881 · Batumi, Georgia</div>
+    <h1 class="hero-title">Batumi<br><em data-i18n="hero.titleEm">Central Park</em></h1>
+    <p class="hero-subtitle" data-i18n="hero.subtitle">6 May Park · ცენტრალური პარკი</p>
+    <div class="hero-cta">
+      <a href="#about" class="btn-primary" data-i18n="hero.cta1">Discover the Park</a>
+      <a href="#location" class="btn-outline" data-i18n="hero.cta2">Get Directions</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span data-i18n="hero.scroll">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-label" data-i18n="about.label">Our Story</span>
+        <h2 class="section-title" data-i18n="about.title">A Living <em>Garden</em><br>in the Heart of Batumi</h2>
+        <br>
+        <p data-i18n="about.p1">Batumi Central Park, affectionately known as "6 May Park," is the oldest and most beloved green space in all of Adjara. Nestled beside the shimmering Lake Nuri-Geli, it has been the city's living room for over 140 years.</p>
+        <p data-i18n="about.p2">Originally called Alexander's Garden when it was laid out by Prussian landscape artist Resler in 1881, the park grew to cover 78,000 square meters of lush subtropical greenery. Today it remains one of the most cherished destinations for both locals and visitors to Batumi.</p>
+        <p data-i18n="about.p3">The park is home to the Batumi Dolphinarium, a small zoo, lakeside paths, children's carousels, catamaran rides, and countless quiet corners perfect for picnics, conversations, and contemplation.</p>
+        <div class="stats-row">
+          <div class="stat"><div class="stat-num" id="statYears">142</div><div class="stat-label" data-i18n="about.stat1">Years of History</div></div>
+          <div class="stat"><div class="stat-num">4.7★</div><div class="stat-label" data-i18n="about.stat2">Google Rating</div></div>
+          <div class="stat"><div class="stat-num" id="statArea">78K</div><div class="stat-label" data-i18n="about.stat3">Square Meters</div></div>
+        </div>
+      </div>
+      <div class="about-image reveal reveal-delay-2">
+        <img class="about-img-main" src="https://lh3.googleusercontent.com/place-photos/AL8-SNEtnG9IU4wkm7uWO3rdU1A-6BvN3wGgmkVcXplVq6oFgK09CNPNLwfheC3OPlajGpFJIxnf2f2bHQcRRcmXrEGxjdTuTCsofK7lyEYwMM8H1gipV4YhJzY6It6bedAIv2-Bv2SCtMHuL9s0tEk=s4800-w800-h600" alt="" loading="lazy">
+        <img class="about-img-accent" src="https://lh3.googleusercontent.com/place-photos/AL8-SNFZdKUmwDRwYkoO2I-gi4XVpNUFt1txWjSF7p4QDbsJ6U4F59oapvYTclBdwvajH8ubd9hn8KxWdDJYS1At7TeyG5K569Kbh6gKKHUhwPNk28AO6fd7qdZ0MkSQLtzOqgYxhwJewSMFSDCt-w=s4800-w800-h600" alt="" loading="lazy">
+        <div class="about-year">1881</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-intro reveal">
+      <span class="section-label" data-i18n="gallery.label">Visual Journey</span>
+      <h2 class="section-title" data-i18n="gallery.title">Through the <em>Lens</em></h2>
+      <p data-i18n="gallery.desc">Explore the park's diverse landscapes — from misty lakeside mornings to golden-hour pathways beneath ancient canopies.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal"><a class="gallery-link" href="https://maps.google.com/maps/contrib/100285829650411788234/photos" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFYGEXF2fT6WDvgFtFxkuB3NQNpxzouozniswVpAfPL6OWK0BuySqCIZFyL-SFWWokxAyzKTSZaBLCSiQsw5mD3ziFMhJB4v8do2TqAiIkTn_PU50MraAjQDFAvrOA9vVdY0HBfOnogvsyumw=s4800-w800-h600" alt="" loading="lazy"><div class="gallery-item-overlay"><div class="gallery-overlay-text"><span data-i18n="gallery.cap1">Lake Nuri-Geli</span><span class="gallery-view-link" data-i18n="gallery.viewOnMaps">View on Maps</span></div><div class="gallery-ext-icon">↗</div></div></a></div>
+      <div class="gallery-item reveal reveal-delay-1"><a class="gallery-link" href="https://maps.google.com/maps/contrib/110546093149800170120/photos" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNEtnG9IU4wkm7uWO3rdU1A-6BvN3wGgmkVcXplVq6oFgK09CNPNLwfheC3OPlajGpFJIxnf2f2bHQcRRcmXrEGxjdTuTCsofK7lyEYwMM8H1gipV4YhJzY6It6bedAIv2-Bv2SCtMHuL9s0tEk=s4800-w800-h600" alt="" loading="lazy"><div class="gallery-item-overlay"><div class="gallery-overlay-text"><span data-i18n="gallery.cap2">Tropical Canopy</span><span class="gallery-view-link" data-i18n="gallery.viewOnMaps">View on Maps</span></div><div class="gallery-ext-icon">↗</div></div></a></div>
+      <div class="gallery-item reveal reveal-delay-2"><a class="gallery-link" href="https://maps.google.com/maps/contrib/117314347075649186615/photos" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFZdKUmwDRwYkoO2I-gi4XVpNUFt1txWjSF7p4QDbsJ6U4F59oapvYTclBdwvajH8ubd9hn8KxWdDJYS1At7TeyG5K569Kbh6gKKHUhwPNk28AO6fd7qdZ0MkSQLtzOqgYxhwJewSMFSDCt-w=s4800-w800-h600" alt="" loading="lazy"><div class="gallery-item-overlay"><div class="gallery-overlay-text"><span data-i18n="gallery.cap3">Garden Paths</span><span class="gallery-view-link" data-i18n="gallery.viewOnMaps">View on Maps</span></div><div class="gallery-ext-icon">↗</div></div></a></div>
+      <div class="gallery-item reveal reveal-delay-1"><a class="gallery-link" href="https://maps.google.com/maps/contrib/109708620296320587497/photos" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHCREi-c8mDNA_Qb1KraTJf6PgdwvhcWdRZp45Upa-62xe2g6pA87DYi8lB8k5g4IHzqvMZmDg2Dxzd3gxogXQu-Z-Oowl9VAH1qDLi-F8YIjIJpeqkmuVQIt8N7y_GyM2R9yjRKofVtKdtnxc=s4800-w800-h600" alt="" loading="lazy"><div class="gallery-item-overlay"><div class="gallery-overlay-text"><span data-i18n="gallery.cap4">Lush Greenery</span><span class="gallery-view-link" data-i18n="gallery.viewOnMaps">View on Maps</span></div><div class="gallery-ext-icon">↗</div></div></a></div>
+      <div class="gallery-item reveal reveal-delay-3"><a class="gallery-link" href="https://maps.google.com/maps/contrib/117563856554288268989/photos" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNECwQjAbBzPCVKojnvJmIYVHtiWroI3iNjjXT0MOSbfQwUCMzzngqoLBfmP-Uhm-rrFnNA2lCVCo-KgIsAZWRb9AbsESINXLQK5jMI1c6IHgIgbpw4Gm00DCDzU8BuJRG4qP1HgK78Q2Gc_p9Y=s4800-w800-h600" alt="" loading="lazy"><div class="gallery-item-overlay"><div class="gallery-overlay-text"><span data-i18n="gallery.cap5">Reflections</span><span class="gallery-view-link" data-i18n="gallery.viewOnMaps">View on Maps</span></div><div class="gallery-ext-icon">↗</div></div></a></div>
+      <div class="gallery-item reveal"><a class="gallery-link" href="https://maps.google.com/maps/contrib/100285829650411788234/photos" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFYGEXF2fT6WDvgFtFxkuB3NQNpxzouozniswVpAfPL6OWK0BuySqCIZFyL-SFWWokxAyzKTSZaBLCSiQsw5mD3ziFMhJB4v8do2TqAiIkTn_PU50MraAjQDFAvrOA9vVdY0HBfOnogvsyumw=s4800-w800-h600" alt="" loading="lazy"><div class="gallery-item-overlay"><div class="gallery-overlay-text"><span data-i18n="gallery.cap6">Fountain Square</span><span class="gallery-view-link" data-i18n="gallery.viewOnMaps">View on Maps</span></div><div class="gallery-ext-icon">↗</div></div></a></div>
+      <div class="gallery-item reveal reveal-delay-2"><a class="gallery-link" href="https://maps.google.com/maps/contrib/110546093149800170120/photos" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNEtnG9IU4wkm7uWO3rdU1A-6BvN3wGgmkVcXplVq6oFgK09CNPNLwfheC3OPlajGpFJIxnf2f2bHQcRRcmXrEGxjdTuTCsofK7lyEYwMM8H1gipV4YhJzY6It6bedAIv2-Bv2SCtMHuL9s0tEk=s4800-w800-h600" alt="" loading="lazy"><div class="gallery-item-overlay"><div class="gallery-overlay-text"><span data-i18n="gallery.cap7">City Views</span><span class="gallery-view-link" data-i18n="gallery.viewOnMaps">View on Maps</span></div><div class="gallery-ext-icon">↗</div></div></a></div>
+      <div class="gallery-item reveal reveal-delay-3"><a class="gallery-link" href="https://maps.google.com/maps/contrib/117314347075649186615/photos" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFZdKUmwDRwYkoO2I-gi4XVpNUFt1txWjSF7p4QDbsJ6U4F59oapvYTclBdwvajH8ubd9hn8KxWdDJYS1At7TeyG5K569Kbh6gKKHUhwPNk28AO6fd7qdZ0MkSQLtzOqgYxhwJewSMFSDCt-w=s4800-w800-h600" alt="" loading="lazy"><div class="gallery-item-overlay"><div class="gallery-overlay-text"><span data-i18n="gallery.cap8">Golden Hour</span><span class="gallery-view-link" data-i18n="gallery.viewOnMaps">View on Maps</span></div><div class="gallery-ext-icon">↗</div></div></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ATTRACTIONS -->
+<section id="attractions">
+  <div class="container">
+    <div class="attractions-header">
+      <div>
+        <span class="section-label" data-i18n="attr.label">What to See</span>
+        <h2 class="section-title" data-i18n="attr.title">Park <em>Attractions</em></h2>
+        <p class="attractions-desc" data-i18n="attr.desc">From serene lakeside strolls to thrilling dolphin shows — the park has something for every visitor.</p>
+      </div>
+    </div>
+                <div class="attractions-grid">
+      <div class="attraction-card reveal"><span class="attraction-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="16" cy="8" r="3.5"/>
+  <path d="M3 18c2-3 5-4.5 8-3.5 1.5.5 3 .5 4-.5l2-3"/>
+  <path d="M11 14.5c-.5-2 .5-4.5 3-5.5"/>
+  <path d="M17 5.5l1.5-2 1 1.5"/>
+</svg></span><h3 class="attraction-name" data-i18n="attr.a1name">Batumi Dolphinarium</h3><p class="attraction-desc" data-i18n="attr.a1desc">One of the park's most popular attractions, the dolphinarium offers spectacular shows with dolphins, sea lions, and other marine animals. A must-see for families and children.</p><button class="attraction-btn" onclick="openDetail(0)" data-i18n-btn="attr.learnMore"><span data-i18n="attr.learnMore">Learn More</span> <span class="btn-arrow">→</span></button></div>
+      <div class="attraction-card reveal reveal-delay-1"><span class="attraction-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <rect x="3" y="4" width="18" height="16" rx="1"/>
+  <line x1="8" y1="4" x2="8" y2="20"/>
+  <line x1="12" y1="4" x2="12" y2="20"/>
+  <line x1="16" y1="4" x2="16" y2="20"/>
+  <circle cx="9.5" cy="11" r="1" fill="currentColor" stroke="none"/>
+  <circle cx="14.5" cy="11" r="1" fill="currentColor" stroke="none"/>
+  <path d="M10 14c.5 1 1.2 1.5 2 1.5s1.5-.5 2-1.5"/>
+</svg></span><h3 class="attraction-name" data-i18n="attr.a2name">Batumi Zoo</h3><p class="attraction-desc" data-i18n="attr.a2desc">Located within the park grounds, the zoo houses a variety of local and exotic animals. While a popular attraction, visitors are encouraged to check reviews before visiting.</p><button class="attraction-btn" onclick="openDetail(1)" data-i18n-btn="attr.learnMore"><span data-i18n="attr.learnMore">Learn More</span> <span class="btn-arrow">→</span></button></div>
+      <div class="attraction-card reveal reveal-delay-2"><span class="attraction-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3 17c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 3 1 4.5 0"/>
+  <path d="M6 17l1-5h10l1 5"/>
+  <path d="M12 12V5"/>
+  <path d="M12 5l5 4H7l5-4z"/>
+</svg></span><h3 class="attraction-name" data-i18n="attr.a3name">Lake Nuri-Geli</h3><p class="attraction-desc" data-i18n="attr.a3desc">The park's centerpiece — a tranquil lake surrounded by a beautiful 1km walking loop. Catamaran and rowboat rentals are available, and ducks add to the peaceful atmosphere.</p><button class="attraction-btn" onclick="openDetail(2)" data-i18n-btn="attr.learnMore"><span data-i18n="attr.learnMore">Learn More</span> <span class="btn-arrow">→</span></button></div>
+      <div class="attraction-card reveal reveal-delay-1"><span class="attraction-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 9h16"/>
+  <path d="M12 3l-8 6h16l-8-6z"/>
+  <line x1="12" y1="3" x2="12" y2="22"/>
+  <line x1="7" y1="9" x2="6" y2="15"/>
+  <line x1="12" y1="9" x2="12" y2="16"/>
+  <line x1="17" y1="9" x2="18" y2="15"/>
+  <circle cx="6" cy="16" r="1.5"/>
+  <circle cx="12" cy="17" r="1.5"/>
+  <circle cx="18" cy="16" r="1.5"/>
+</svg></span><h3 class="attraction-name" data-i18n="attr.a4name">Children's Rides</h3><p class="attraction-desc" data-i18n="attr.a4desc">Carousels, electric rides, and various family amusements scattered throughout the park, making it a favorite destination for children and families on weekends.</p><button class="attraction-btn" onclick="openDetail(3)" data-i18n-btn="attr.learnMore"><span data-i18n="attr.learnMore">Learn More</span> <span class="btn-arrow">→</span></button></div>
+      <div class="attraction-card reveal reveal-delay-2"><span class="attraction-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 22V12"/>
+  <path d="M12 12C12 7 8 4 3 3c0 5 2.5 9 9 9"/>
+  <path d="M12 12c0-5 4-8 9-9-1 5-3.5 9-9 9"/>
+  <path d="M9 15c1 1.5 2 3 3 4"/>
+  <path d="M15 15c-1 1.5-2 3-3 4"/>
+</svg></span><h3 class="attraction-name" data-i18n="attr.a5name">Botanical Paths</h3><p class="attraction-desc" data-i18n="attr.a5desc">Wind through shaded pathways lined with subtropical species, ornamental shrubs, and tall trees — a living legacy of the park's 19th-century European landscape designers.</p><button class="attraction-btn" onclick="openDetail(4)" data-i18n-btn="attr.learnMore"><span data-i18n="attr.learnMore">Learn More</span> <span class="btn-arrow">→</span></button></div>
+      <div class="attraction-card reveal reveal-delay-3"><span class="attraction-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M17 8h1a3 3 0 0 1 0 6h-1"/>
+  <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/>
+  <path d="M6 2v2"/>
+  <path d="M10 2v2"/>
+  <path d="M14 2v2"/>
+</svg></span><h3 class="attraction-name" data-i18n="attr.a6name">Cafés &amp; Restaurants</h3><p class="attraction-desc" data-i18n="attr.a6desc">Numerous cafés and eateries surround the park offering Georgian cuisine, fresh coffee, and local snacks. Perfect for a relaxing break after a morning stroll around the lake.</p><button class="attraction-btn" onclick="openDetail(5)" data-i18n-btn="attr.learnMore"><span data-i18n="attr.learnMore">Learn More</span> <span class="btn-arrow">→</span></button></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- HISTORY -->
+<section id="history">
+  <div class="history-bg-text">1881</div>
+  <div class="container">
+    <div style="text-align:center;">
+      <span class="section-label reveal" data-i18n="hist.label">Through the Ages</span>
+      <h2 class="section-title reveal" data-i18n="hist.title">A Rich <em>History</em></h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-dot">1881</div><div class="timeline-content"><h3 data-i18n="hist.t1h">Foundation</h3><p data-i18n="hist.t1p">Construction of Batumi's first public garden begins under the direction of Prussian landscape gardener Resler. The park is laid out on the southeastern shores of Lake Nuri-Geli, covering 78,000 square meters.</p></div></div>
+      <div class="timeline-item"><div class="timeline-dot">1884</div><div class="timeline-content"><h3 data-i18n="hist.t2h">The Work Pauses</h3><p data-i18n="hist.t2p">Resler passes away in 1884, and construction is suspended for a year. The park remains unfinished but already shows the promise of a spectacular urban garden.</p></div></div>
+      <div class="timeline-item"><div class="timeline-dot">1885</div><div class="timeline-content"><h3 data-i18n="hist.t3h">French Touch</h3><p data-i18n="hist.t3p">Renowned French landscape architect Mikhail Dalfons takes over and completes both the park and the adjacent boulevard. Rare subtropical shrubs and trees are planted, giving the garden its distinctive lush character.</p></div></div>
+      <div class="timeline-item"><div class="timeline-dot">1900s</div><div class="timeline-content"><h3 data-i18n="hist.t4h">Alexander's Garden</h3><p data-i18n="hist.t4p">Named Alexander's Garden in honor of Russian Emperor Alexander III, the park becomes the crown jewel of Batumi's public life, beloved by residents and visitors alike during the city's cosmopolitan heyday.</p></div></div>
+      <div class="timeline-item"><div class="timeline-dot">1932</div><div class="timeline-content"><h3 data-i18n="hist.t5h">Cultural Park Era</h3><p data-i18n="hist.t5p">The garden is reorganized as a Cultural and Recreational Park, then later transformed into a Children's Park and Pioneers' Camp during the Soviet period — serving generations of Batumi's youth.</p></div></div>
+      <div class="timeline-item"><div class="timeline-dot">2006</div><div class="timeline-content"><h3 data-i18n="hist.t6h">6 May Park</h3><p data-i18n="hist.t6p">The park is officially renamed "6 May Park" and undergoes modernization. Today it remains Batumi's most cherished green space, attracting over 12,000 Google reviews with a 4.7-star rating.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="container">
+    <span class="section-label reveal" data-i18n="loc.label">Find Us</span>
+    <h2 class="section-title reveal" data-i18n="loc.title">Visit the <em>Park</em></h2>
+    <div class="location-grid">
+      <div class="reveal">
+        <h3 data-i18n="loc.h3">Getting There</h3>
+        <div class="location-detail"><div class="detail-icon">📍</div><div class="detail-text"><strong data-i18n="loc.d1s">Address</strong><span data-i18n="loc.d1t">17 Melikishvili Street, Batumi, Adjara, Georgia</span></div></div>
+        <div class="location-detail"><div class="detail-icon">🕐</div><div class="detail-text"><strong data-i18n="loc.d2s">Opening Hours</strong><span data-i18n="loc.d2t">Open 24 hours, 7 days a week<br>Free entry to the park</span></div></div>
+        <div class="location-detail"><div class="detail-icon">🚌</div><div class="detail-text"><strong data-i18n="loc.d3s">By Public Transport</strong><span data-i18n="loc.d3t">Take a bus to Batumi Central Bus Station, then walk or take a marshrutka toward the city center. Approximately 1 GEL fare.</span></div></div>
+        <div class="location-detail"><div class="detail-icon">🚕</div><div class="detail-text"><strong data-i18n="loc.d4s">By Taxi</strong><span data-i18n="loc.d4t">Taxis available throughout Batumi. Ask for 17 Melikishvili Street. Expect 15–30 GEL from surrounding towns.</span></div></div>
+        <div class="location-detail"><div class="detail-icon">🌡️</div><div class="detail-text"><strong data-i18n="loc.d5s">Best Time to Visit</strong><span data-i18n="loc.d5t">Spring (April–May) and Autumn (Sept–Oct) for ideal weather. Mornings are peaceful; weekends are lively.</span></div></div>
+        <a href="https://maps.google.com/?q=Batumi+Central+Park" target="_blank" class="map-cta" data-i18n="loc.mapCta">Open in Google Maps</a>
+      </div>
+      <div class="map-embed reveal reveal-delay-2">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2981.5!2d41.6285588!3d41.6480022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406785d7a3a6df37%3A0x5bbcd7d24099e0a7!2sBatumi%20Central%20Park!5e0!3m2!1sen!2sge!4v1699000000000" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+  <div class="container">
+    <div style="text-align:center;max-width:540px;margin:0 auto;">
+      <span class="section-label reveal" data-i18n="tips.label">For Visitors</span>
+      <h2 class="section-title reveal" data-i18n="tips.title">Travel <em>Tips</em></h2>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card reveal"><div class="tip-num">01</div><div class="tip-title" data-i18n="tips.t1h">Arrive Early</div><p class="tip-text" data-i18n="tips.t1p">The park is most magical in the early morning hours — misty lake reflections and birdsong before the crowds arrive. Perfect for photography and peaceful walks.</p></div>
+      <div class="tip-card reveal reveal-delay-1"><div class="tip-num">02</div><div class="tip-title" data-i18n="tips.t2h">Free Entry</div><p class="tip-text" data-i18n="tips.t2p">The park itself is completely free to enter and open 24/7. Some attractions like the Dolphinarium and zoo have separate ticket fees, so plan your budget accordingly.</p></div>
+      <div class="tip-card reveal reveal-delay-2"><div class="tip-num">03</div><div class="tip-title" data-i18n="tips.t3h">Stray Dogs</div><p class="tip-text" data-i18n="tips.t3p">You may encounter stray dogs in the park — don't be alarmed. They are mostly calm and harmless, and the city tags and vaccinates them. Simply give them space.</p></div>
+      <div class="tip-card reveal reveal-delay-3"><div class="tip-num">04</div><div class="tip-title" data-i18n="tips.t4h">Bring Snacks</div><p class="tip-text" data-i18n="tips.t4p">Pack a picnic! The lakeside is perfect for sitting on benches and enjoying local Georgian food. Many nearby bakeries sell fresh churchkhela, pastries, and fruit.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Batumi <span>Central</span> Park</div>
+        <p class="footer-desc" data-i18n="footer.desc">The oldest and most beloved public garden in Adjara, Georgia. A living piece of history since 1881, open to all who seek nature, peace, and beauty.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.explore">Explore</h4>
+        <ul>
+          <li><a href="#about" data-i18n="footer.l1">About the Park</a></li>
+          <li><a href="#gallery" data-i18n="footer.l2">Photo Gallery</a></li>
+          <li><a href="#attractions" data-i18n="footer.l3">Attractions</a></li>
+          <li><a href="#history" data-i18n="footer.l4">History</a></li>
+          <li><a href="#tips" data-i18n="footer.l5">Visitor Tips</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer.contact">Contact & Info</h4>
+        <ul>
+          <li><a href="#">17 Melikishvili St, Batumi</a></li>
+          <li><a href="#" data-i18n="footer.open">Open 24 Hours · Free Entry</a></li>
+          <li><a href="#">Adjara, Georgia</a></li>
+          <li><a href="https://maps.google.com/?q=Batumi+Central+Park" target="_blank">Google Maps</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer.copy">© 2024 Batumi Central Park. A tribute to Georgia's most beloved green space.</p>
+      <div class="footer-rating"><span class="stars">★★★★★</span><span data-i18n="footer.rating">4.7 / 5 — 12,000+ Reviews</span></div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+
+<!-- ATTRACTION DETAIL OVERLAY -->
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-topbar">
+    <div class="detail-topbar-left">
+      <button class="detail-back-btn" onclick="closeDetail()">← <span data-i18n="detail.back">Back to Park</span></button>
+      <span class="detail-breadcrumb">Batumi Central Park → <span id="detailBreadcrumb">Attractions</span></span>
+    </div>
+    <div class="detail-nav">
+      <button class="detail-nav-btn" id="detailPrev" onclick="navigateDetail(-1)" title="Previous">‹</button>
+      <button class="detail-nav-btn" id="detailNext" onclick="navigateDetail(1)" title="Next">›</button>
+    </div>
+  </div>
+  <div id="detailContent"></div>
+</div>
+
+</body>
+</html>

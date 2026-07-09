@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div class="w-screen h-screen bg-black">
+      <header class="w-full bg-white-500">
+        <ul class="text-white flex justify-between items-center">
+          <li>Home</li>
+          <li>About</li>
+          <li>Services</li>
+          <li>Projects</li>
+        </ul>
+      </header>
+      <div class="w-[500px] flex justify-center gap-[20px] items-center">
+        <img src="./cat.jpg" alt="pifile" class="w-[350px] h-[400px]" />
+        <div>
+          <h1 class="text-5xl font-bold text-white mb-5">
+            Welcome To My Creative Space
+          </h1>
+          <p class="text-white mb-5">
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking at its layout. The point
+            of using Lorem Ipsum is that it has a more-or-less normal
+            distribution of letters, as opposed to using 'Content here, content
+            here', making it look like readable English.
+          </p>
+          <button
+            id="btn"
+            class="bg-purple-800 px-4 py-2 text-white cursor-pointer hover:bg-purple-500"
+          >
+            Download CV
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

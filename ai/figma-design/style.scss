@@ -1,0 +1,357 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Rubik+Bubbles&display=swap");
+
+@mixin displayCenter($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+$black: #000000;
+$bold_gray: #252525;
+$bold_golder_white: #d3c8ba;
+$bold_red: #4f1212;
+$bold_white: #f1f1f1;
+$grayed_blue: #1b234b;
+$grayed_green: #969f7d;
+$golder_white: #f8edde;
+$reded_pink: #eea6a6;
+$white: #ffffff;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Fragment Mono", monospace;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 22px 10px;
+  ul {
+    @include displayCenter(space-between, center);
+    width: 100%;
+    list-style: none;
+    li {
+      a {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: clamp(15px, 3vw, 26px);
+        line-height: 120%;
+        letter-spacing: -4%;
+        color: $black;
+      }
+    }
+  }
+}
+
+.hero {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 10px;
+  h1 {
+    width: 100%;
+    font-family: "Rubik Bubbles", system-ui;
+    color: $black;
+    font-size: clamp(55px, 11vw, 200px);
+    text-align: center;
+    line-height: 120%;
+    letter-spacing: 10%;
+    text-transform: uppercase;
+    word-wrap: break-word;
+  }
+  .hero_section {
+    @include displayCenter(space-between, center);
+    margin-top: 24px;
+    p {
+      font-size: 14px;
+      list-style: 120%;
+      letter-spacing: -2%;
+      color: $black;
+    }
+  }
+}
+
+main {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 10px;
+  .promotions {
+    @include displayCenter(space-between, center);
+    gap: 10px;
+    .promotion_cont {
+      @include displayCenter(center, center);
+      flex-direction: column;
+      row-gap: 30px;
+      width: clamp(253px, 45vw, 413px);
+      height: clamp(253px, 35vw, 413px);
+      text-align: center;
+      .promotion_label {
+        font-size: 14px;
+        line-height: 120%;
+        letter-spacing: -2%;
+      }
+      .promotion_value {
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: bold;
+        line-height: 110%;
+        letter-spacing: -2%;
+        text-transform: uppercase;
+        font-family: "Rubik", sans-serif;
+      }
+    }
+    .archive {
+      .promotion_value {
+        width: 100%;
+        max-width: 160px;
+      }
+    }
+    .date {
+      border-left: 1px solid $black;
+      border-right: 1px solid $black;
+      .promotion_value {
+        width: 100%;
+        max-width: 191px;
+      }
+    }
+  }
+
+  .products_container {
+    @include displayCenter(space-between, center);
+    flex-wrap: wrap;
+    gap: 10px;
+    .product {
+      width: clamp(253px, 32vw, 413px);
+      height: clamp(253px, 35vw, 413px);
+    }
+    .glasses_cont {
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .shirt_cont {
+      background-color: $bold_gray;
+      img {
+        width: 100%;
+      }
+      .item_info {
+        @include displayCenter(center, center);
+        width: 100%;
+        gap: 20px;
+        p {
+          color: $white;
+          font-size: 14px;
+          line-height: 120%;
+          letter-spacing: -2%;
+        }
+        .spring {
+          opacity: 0.6;
+        }
+      }
+    }
+    .maps_cont {
+      @include displayCenter(space-between, flex-start);
+      flex-direction: column;
+      background-color: $black;
+      padding: 21px 13px;
+      p {
+        color: $white;
+        font-size: 14px;
+        line-height: 120%;
+        letter-spacing: -2%;
+      }
+      img {
+        width: 48px;
+        height: 48px;
+      }
+    }
+    .white_bag_cont {
+      background-color: $grayed_blue;
+      img {
+        width: 100%;
+      }
+      .item_info {
+        @include displayCenter(center, center);
+        width: 100%;
+        gap: 20px;
+        p {
+          color: $white;
+          font-size: 14px;
+          line-height: 120%;
+          letter-spacing: -2%;
+        }
+        .spring {
+          opacity: 0.6;
+        }
+      }
+    }
+    .clothing_cont {
+      @include displayCenter(center, center);
+      background-color: $bold_white;
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: bold;
+      line-height: 120%;
+      letter-spacing: -2%;
+    }
+    .singer_cont {
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .zines_cont {
+      @include displayCenter(center, center);
+      background-color: $golder_white;
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: bold;
+      line-height: 120%;
+      letter-spacing: -2%;
+    }
+    .old_caset_cont {
+      background-color: $bold_red;
+      img {
+        width: 100%;
+      }
+      .item_info {
+        @include displayCenter(center, center);
+        width: 100%;
+        gap: 20px;
+        p {
+          color: $white;
+          font-size: 14px;
+          line-height: 120%;
+          letter-spacing: -2%;
+        }
+        .spring {
+          opacity: 0.6;
+        }
+      }
+    }
+    .live_music_cont {
+      @include displayCenter(center, center);
+      background-color: $grayed_green;
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: bold;
+      line-height: 120%;
+      letter-spacing: -2%;
+    }
+    .gorila_cont {
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .records_cont {
+      @include displayCenter(center, center);
+      background-color: $bold_golder_white;
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: bold;
+      line-height: 120%;
+      letter-spacing: -2%;
+    }
+    .instagram_link_cont {
+      @include displayCenter(space-between, flex-start);
+      flex-direction: column;
+      background-color: $black;
+      padding: 21px 13px;
+      p {
+        color: $white;
+        font-size: 14px;
+        line-height: 120%;
+        letter-spacing: -2%;
+      }
+      img {
+        width: 48px;
+        height: 48px;
+      }
+    }
+    .records_one_cont {
+      @include displayCenter(center, center);
+      width: clamp(253px, 45vw, 625px);
+      height: clamp(253px, 35vw, 400px);
+      background-color: $golder_white;
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: bold;
+      line-height: 120%;
+      letter-spacing: -2%;
+    }
+    .switer_cont {
+      width: clamp(253px, 45vw, 625px);
+      height: clamp(253px, 35vw, 400px);
+      background-color: $reded_pink;
+      img {
+        width: 100%;
+        height: 80%;
+      }
+      .item_info {
+        @include displayCenter(center, center);
+        width: 100%;
+        gap: 20px;
+        p {
+          color: $white;
+          font-size: 14px;
+          line-height: 120%;
+          letter-spacing: -2%;
+        }
+        .spring {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}
+
+// ========================================= Responsive =========================================
+
+@media screen and (max-width: 768px) {
+  main {
+    .promotions {
+      flex-direction: column;
+      gap: 10px;
+      .promotion_cont {
+        width: 100%;
+        height: 160px;
+        gap: 20px;
+        .promotion_value {
+          font-size: 16px;
+        }
+      }
+      .archive {
+        .promotion_value {
+          width: 100px;
+        }
+      }
+      .date {
+        border: none;
+        border-top: 1px solid $black;
+        border-bottom: 1px solid $black;
+        .promotion_value {
+          width: 120px;
+        }
+      }
+      .country {
+        .promotion_value {
+          width: 160px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  main {
+    .products_container {
+      @include displayCenter(center, center);
+    }
+  }
+}

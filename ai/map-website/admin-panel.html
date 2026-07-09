@@ -1,0 +1,2911 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BCP Admin — Batumi Central Park</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&family=DM+Mono:wght@300;400;500&family=Noto+Sans+Georgian:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --green-deep: #1a2e1a;
+        --green-mid: #2d5016;
+        --green-bright: #4a8020;
+        --green-surface: #1f3520;
+        --green-border: #253d25;
+        --green-border2: #2e4a2e;
+        --gold: #c9a84c;
+        --gold-light: #e8c96d;
+        --gold-dim: rgba(201, 168, 76, 0.14);
+        --gold-glow: rgba(201, 168, 76, 0.07);
+        --gold-line: rgba(201, 168, 76, 0.25);
+        --cream: #f5f0e8;
+        --cream-dim: rgba(245, 240, 232, 0.65);
+        --cream-faint: rgba(245, 240, 232, 0.3);
+        --red: #c94c4c;
+        --teal: #4a9b8e;
+        --success: #5a9945;
+        --sidebar: 256px;
+        --topbar: 56px;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "DM Sans", "Noto Sans Georgian", sans-serif;
+        background: var(--green-deep);
+        color: var(--cream);
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        width: var(--sidebar);
+        height: 100vh;
+        background: var(--green-surface);
+        border-right: 1px solid var(--green-border);
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .sidebar::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--gold),
+          rgba(201, 168, 76, 0.1),
+          transparent
+        );
+        pointer-events: none;
+      }
+      .sb-logo {
+        padding: 22px 22px 18px;
+        border-bottom: 1px solid var(--green-border);
+      }
+      .sb-eyebrow {
+        font-size: 0.58rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.7;
+        margin-bottom: 6px;
+        font-weight: 300;
+      }
+      .sb-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: var(--cream);
+        line-height: 1.25;
+      }
+      .sb-name em {
+        font-style: italic;
+        color: var(--gold-light);
+      }
+      .sb-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 10px;
+        font-size: 0.6rem;
+        color: var(--cream-faint);
+        letter-spacing: 0.08em;
+        font-weight: 300;
+        background: var(--green-mid);
+        border: 1px solid var(--green-border2);
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+      .status-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #5a9945;
+        box-shadow: 0 0 5px rgba(90, 153, 69, 0.7);
+        animation: pulse 2.5s ease infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .sb-nav {
+        padding: 14px 12px;
+        flex: 1;
+        overflow-y: auto;
+      }
+      .sb-sec {
+        font-size: 0.56rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--cream-faint);
+        padding: 10px 10px 4px;
+        font-weight: 300;
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 10px 12px;
+        border-radius: 3px;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          border-color 0.2s;
+        font-size: 0.78rem;
+        font-weight: 300;
+        color: var(--cream-dim);
+        border: 1px solid transparent;
+        margin-bottom: 2px;
+        position: relative;
+      }
+      .nav-item:hover {
+        background: var(--gold-glow);
+        color: var(--cream);
+      }
+      .nav-item.active {
+        background: var(--gold-dim);
+        border-color: var(--gold-line);
+        color: var(--gold-light);
+      }
+      .nav-item.active::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 22%;
+        bottom: 22%;
+        width: 2px;
+        background: var(--gold);
+        border-radius: 0 2px 2px 0;
+      }
+      .nav-icon {
+        width: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .nav-badge {
+        margin-left: auto;
+        font-size: 0.55rem;
+        padding: 2px 7px;
+        border-radius: 10px;
+        letter-spacing: 0.05em;
+      }
+      .nav-badge.warn {
+        background: rgba(201, 76, 76, 0.18);
+        color: #e88888;
+        border: 1px solid rgba(201, 76, 76, 0.28);
+      }
+      .nav-badge.ok {
+        background: rgba(90, 153, 69, 0.15);
+        color: #7dc46a;
+        border: 1px solid rgba(90, 153, 69, 0.22);
+      }
+      .sb-footer {
+        padding: 14px 22px;
+        border-top: 1px solid var(--green-border);
+      }
+      .user-row {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+      .user-av {
+        width: 32px;
+        height: 32px;
+        background: var(--gold-dim);
+        border: 1px solid var(--gold-line);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        font-size: 0.9rem;
+        color: var(--gold);
+        flex-shrink: 0;
+      }
+      .u-name {
+        font-size: 0.78rem;
+        font-weight: 400;
+        color: var(--cream);
+      }
+      .u-role {
+        font-size: 0.6rem;
+        font-weight: 300;
+        color: var(--cream-faint);
+        margin-top: 1px;
+      }
+
+      /* MAIN */
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        min-width: 0;
+      }
+      .topbar {
+        height: var(--topbar);
+        background: var(--green-surface);
+        border-bottom: 1px solid var(--green-border);
+        display: flex;
+        align-items: center;
+        padding: 0 28px;
+        gap: 16px;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .topbar::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold-line),
+          transparent
+        );
+      }
+      .tb-left {
+        flex: 1;
+      }
+      .tb-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: var(--cream);
+      }
+      .tb-bread {
+        font-size: 0.6rem;
+        color: var(--cream-faint);
+        letter-spacing: 0.1em;
+        margin-top: 2px;
+        font-weight: 300;
+      }
+      .tb-bread span {
+        color: var(--gold);
+        opacity: 0.85;
+      }
+      .tb-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn {
+        background: none;
+        border: 1px solid var(--green-border2);
+        color: var(--cream-dim);
+        padding: 7px 16px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 300;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+      .btn:hover {
+        border-color: var(--gold-line);
+        color: var(--cream);
+        background: var(--gold-glow);
+      }
+      .btn.primary {
+        background: var(--gold);
+        color: var(--green-deep);
+        border-color: var(--gold);
+        font-weight: 500;
+      }
+      .btn.primary:hover {
+        background: var(--gold-light);
+        border-color: var(--gold-light);
+      }
+      .content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 26px;
+      }
+      .page {
+        display: none;
+        animation: pgIn 0.28s ease;
+      }
+      .page.active {
+        display: block;
+      }
+      @keyframes pgIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* CARD */
+      .card {
+        background: var(--green-surface);
+        border: 1px solid var(--green-border);
+        border-radius: 3px;
+        padding: 20px 22px;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.25s;
+      }
+      .card-gold-top::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold-line),
+          transparent
+        );
+      }
+
+      /* SECTION HEAD */
+      .sec-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--green-border);
+        position: relative;
+      }
+      .sec-head::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 36px;
+        height: 1px;
+        background: var(--gold);
+      }
+      .sec-eyebrow {
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        opacity: 0.75;
+        font-weight: 300;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .sec-title {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--cream);
+      }
+      .sec-title em {
+        font-style: italic;
+        color: var(--gold-light);
+      }
+      .sec-aside {
+        font-size: 0.62rem;
+        color: var(--cream-faint);
+        font-weight: 300;
+      }
+
+      /* KPIs */
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 13px;
+        margin-bottom: 18px;
+      }
+      .kpi {
+        background: var(--green-surface);
+        border: 1px solid var(--green-border);
+        border-radius: 3px;
+        padding: 18px 20px 15px;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.25s;
+      }
+      .kpi:hover {
+        border-color: var(--green-border2);
+      }
+      .kpi-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .kpi-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--cream-faint);
+        font-weight: 300;
+      }
+      .kpi-icon {
+        font-size: 1rem;
+        opacity: 0.18;
+      }
+      .kpi-val {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-weight: 400;
+        color: var(--cream);
+        line-height: 1;
+        margin: 10px 0 4px;
+      }
+      .kpi-val.gold {
+        color: var(--gold);
+      }
+      .kpi-sub {
+        font-size: 0.63rem;
+        font-weight: 300;
+        color: var(--cream-faint);
+      }
+      .kpi-sub.up {
+        color: var(--success);
+      }
+      .kpi-sub.warn {
+        color: var(--gold);
+      }
+      .kpi-shimmer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--green-mid),
+          var(--gold),
+          transparent
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.6s ease;
+      }
+      .kpi:hover .kpi-shimmer {
+        transform: scaleX(1);
+      }
+
+      /* 2-col layout */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 13px;
+        margin-bottom: 13px;
+      }
+
+      /* Bar chart */
+      .bar-chart {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      .bar-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .bar-label {
+        font-size: 0.68rem;
+        font-weight: 300;
+        color: var(--cream-dim);
+        width: 115px;
+        flex-shrink: 0;
+      }
+      .bar-track {
+        flex: 1;
+        height: 4px;
+        background: rgba(245, 240, 232, 0.05);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        border-radius: 2px;
+        background: linear-gradient(90deg, var(--green-mid), var(--gold));
+        transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        width: 0;
+      }
+      .bar-pct {
+        font-size: 0.63rem;
+        color: var(--cream-faint);
+        width: 32px;
+        text-align: right;
+        flex-shrink: 0;
+        font-weight: 300;
+      }
+
+      /* Activity feed */
+      .act-feed {
+        display: flex;
+        flex-direction: column;
+      }
+      .act-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 11px;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--green-border);
+      }
+      .act-item:last-child {
+        border-bottom: none;
+      }
+      .act-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+      .act-dot.g {
+        background: var(--success);
+      }
+      .act-dot.r {
+        background: var(--red);
+      }
+      .act-dot.t {
+        background: var(--teal);
+      }
+      .act-text {
+        font-size: 0.7rem;
+        font-weight: 300;
+        color: var(--cream-dim);
+        line-height: 1.5;
+      }
+      .act-text strong {
+        color: var(--cream);
+        font-weight: 400;
+      }
+      .act-time {
+        font-size: 0.58rem;
+        color: var(--cream-faint);
+        margin-top: 2px;
+      }
+
+      /* Status table */
+      .stbl {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .stbl th {
+        padding: 8px 13px;
+        font-size: 0.58rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--cream-faint);
+        text-align: left;
+        border-bottom: 1px solid var(--green-border);
+        font-weight: 300;
+      }
+      .stbl td {
+        padding: 11px 13px;
+        font-size: 0.72rem;
+        border-bottom: 1px solid var(--green-border);
+        color: var(--cream-dim);
+        font-weight: 300;
+        vertical-align: middle;
+      }
+      .stbl tr:last-child td {
+        border-bottom: none;
+      }
+      .stbl tr:hover td {
+        background: var(--gold-glow);
+      }
+      .stbl td.nm {
+        color: var(--cream);
+        font-weight: 400;
+      }
+      .stag {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 2px;
+        font-size: 0.56rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .stag.live {
+        background: rgba(90, 153, 69, 0.14);
+        color: #7dc46a;
+        border: 1px solid rgba(90, 153, 69, 0.22);
+      }
+      .stag.warn {
+        background: rgba(201, 168, 76, 0.1);
+        color: var(--gold);
+        border: 1px solid var(--gold-line);
+      }
+      .row-btn {
+        background: none;
+        border: 1px solid var(--green-border2);
+        color: var(--cream-faint);
+        padding: 4px 10px;
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        font-family: "DM Sans", sans-serif;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: all 0.2s;
+      }
+      .row-btn:hover {
+        border-color: var(--gold-line);
+        color: var(--gold);
+      }
+
+      /* Editor tabs */
+      .etabs {
+        display: flex;
+        border-bottom: 1px solid var(--green-border);
+      }
+      .etab {
+        padding: 11px 22px;
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: var(--cream-faint);
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+        font-weight: 300;
+      }
+      .etab:hover {
+        color: var(--cream-dim);
+      }
+      .etab.active {
+        color: var(--gold-light);
+        border-bottom-color: var(--gold);
+      }
+      .epanel {
+        display: none;
+        padding-top: 20px;
+      }
+      .epanel.active {
+        display: block;
+      }
+
+      /* Forms */
+      .frow {
+        margin-bottom: 15px;
+      }
+      .f2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+      }
+      .f3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 13px;
+      }
+      .flabel {
+        display: block;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--cream-faint);
+        margin-bottom: 6px;
+        font-weight: 300;
+      }
+      .lpill {
+        display: inline-block;
+        background: var(--gold-dim);
+        color: var(--gold);
+        font-size: 0.5rem;
+        padding: 1px 6px;
+        border: 1px solid var(--gold-line);
+        border-radius: 2px;
+        margin-left: 5px;
+        letter-spacing: 0.04em;
+      }
+      .lpill.ka {
+        background: rgba(74, 155, 142, 0.1);
+        color: var(--teal);
+        border-color: rgba(74, 155, 142, 0.22);
+      }
+      .finput,
+      .ftextarea,
+      .fselect {
+        width: 100%;
+        background: var(--green-deep);
+        border: 1px solid var(--green-border2);
+        border-radius: 2px;
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.76rem;
+        font-weight: 300;
+        padding: 9px 13px;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .finput:focus,
+      .ftextarea:focus,
+      .fselect:focus {
+        border-color: var(--gold-line);
+        box-shadow: 0 0 0 2px var(--gold-glow);
+      }
+      .ftextarea {
+        min-height: 72px;
+        resize: vertical;
+        line-height: 1.65;
+      }
+      .fselect {
+        cursor: pointer;
+      }
+      option {
+        background: var(--green-surface);
+      }
+
+      /* Bilingual block */
+      .biblock {
+        background: var(--green-deep);
+        border: 1px solid var(--green-border);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+      .biblock-hd {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 13px;
+        background: var(--green-surface);
+        border-bottom: 1px solid var(--green-border);
+      }
+      .biblock-lbl {
+        font-size: 0.63rem;
+        color: var(--cream-dim);
+        font-weight: 300;
+      }
+      .biblock-hd textarea {
+        display: block;
+        width: 100%;
+        background: transparent;
+        border: none;
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 300;
+        line-height: 1.65;
+        padding: 11px 13px;
+        resize: none;
+        min-height: 64px;
+        outline: none;
+      }
+      .biblock-hd textarea:focus {
+        background: var(--gold-glow);
+      }
+      .biblock textarea {
+        display: block;
+        width: 100%;
+        background: transparent;
+        border: none;
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 300;
+        line-height: 1.65;
+        padding: 11px 13px;
+        resize: none;
+        min-height: 64px;
+        outline: none;
+      }
+      .biblock textarea:focus {
+        background: rgba(201, 168, 76, 0.04);
+      }
+
+      /* Attraction list */
+      .attr-list {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .attr-row {
+        background: var(--green-surface);
+        border: 1px solid var(--green-border);
+        display: grid;
+        grid-template-columns: 44px 1fr 1fr 100px 88px;
+        align-items: center;
+        border-radius: 2px;
+        overflow: hidden;
+        transition: border-color 0.2s;
+      }
+      .attr-row:hover {
+        border-color: var(--green-border2);
+      }
+      .ac {
+        padding: 12px 13px;
+        font-size: 0.72rem;
+        border-right: 1px solid var(--green-border);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 300;
+      }
+      .ac:last-child {
+        border-right: none;
+      }
+      .ac.icn {
+        text-align: center;
+        font-size: 1.05rem;
+      }
+      .ac.nm {
+        color: var(--cream);
+        font-weight: 400;
+      }
+      .ac.act {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+      }
+      .ibtn {
+        background: none;
+        border: 1px solid var(--green-border2);
+        color: var(--cream-faint);
+        width: 26px;
+        height: 26px;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .ibtn:hover {
+        border-color: var(--gold-line);
+        color: var(--gold);
+        background: var(--gold-glow);
+      }
+      .ibtn.del:hover {
+        border-color: rgba(201, 76, 76, 0.4);
+        color: var(--red);
+        background: rgba(201, 76, 76, 0.07);
+      }
+
+      /* History */
+      .hist-list {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .hist-item {
+        background: var(--green-surface);
+        border: 1px solid var(--green-border);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .hist-hd {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 9px 13px;
+        background: var(--green-deep);
+        border-bottom: 1px solid var(--green-border);
+      }
+      .yr-inp {
+        background: transparent;
+        border: none;
+        font-family: "Playfair Display", serif;
+        font-size: 0.82rem;
+        color: var(--gold);
+        width: 50px;
+        outline: none;
+        text-align: center;
+      }
+      .ht-inp {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 300;
+        outline: none;
+      }
+      .hist-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .h-ta {
+        width: 100%;
+        background: transparent;
+        border: none;
+        color: var(--cream-dim);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 300;
+        line-height: 1.65;
+        padding: 11px 13px;
+        resize: none;
+        outline: none;
+        min-height: 58px;
+        border-right: 1px solid var(--green-border);
+      }
+      .h-ta:last-child {
+        border-right: none;
+      }
+      .h-ta:focus {
+        background: var(--gold-glow);
+      }
+
+      /* Tips */
+      .tip-item {
+        background: var(--green-surface);
+        border: 1px solid var(--green-border);
+        border-radius: 2px;
+        margin-bottom: 8px;
+        overflow: hidden;
+      }
+      .tip-hd {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 9px 13px;
+        background: var(--green-deep);
+        border-bottom: 1px solid var(--green-border);
+      }
+      .tip-num {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 300;
+        color: rgba(201, 168, 76, 0.22);
+        width: 26px;
+        flex-shrink: 0;
+      }
+      .tip-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .tip-col {
+        padding: 13px;
+      }
+      .tip-col + .tip-col {
+        border-left: 1px solid var(--green-border);
+      }
+
+      /* Gallery */
+      .gal-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 11px;
+      }
+      .gm-item {
+        background: var(--green-surface);
+        border: 1px solid var(--green-border);
+        border-radius: 2px;
+        overflow: hidden;
+        transition: border-color 0.2s;
+      }
+      .gm-item:hover {
+        border-color: var(--green-border2);
+      }
+      .gm-thumb {
+        width: 100%;
+        height: 118px;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.72) saturate(0.88);
+        transition: filter 0.35s;
+      }
+      .gm-item:hover .gm-thumb {
+        filter: brightness(0.92) saturate(1.02);
+      }
+      .gm-info {
+        padding: 9px 11px 7px;
+      }
+      .gm-cap {
+        font-size: 0.72rem;
+        font-weight: 400;
+        color: var(--cream);
+      }
+      .gm-capka {
+        font-size: 0.63rem;
+        font-weight: 300;
+        color: var(--teal);
+        font-family: "Noto Sans Georgian", sans-serif;
+        margin-top: 2px;
+      }
+      .gm-url {
+        font-size: 0.54rem;
+        color: var(--cream-faint);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 3px;
+      }
+      .gm-acts {
+        display: flex;
+        gap: 4px;
+        padding: 0 11px 9px;
+      }
+      .gm-add {
+        background: none;
+        border: 1px dashed var(--green-border2);
+        border-radius: 2px;
+        height: 100%;
+        min-height: 165px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        color: var(--cream-faint);
+        font-size: 0.68rem;
+        font-weight: 300;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: all 0.2s;
+        width: 100%;
+      }
+      .gm-add:hover {
+        border-color: var(--gold-line);
+        color: var(--gold);
+        background: var(--gold-glow);
+      }
+      .gm-plus {
+        font-size: 1.6rem;
+        opacity: 0.3;
+        font-weight: 200;
+      }
+
+      /* Translations */
+      .trans-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+      }
+      .t-search {
+        flex: 1;
+        min-width: 160px;
+        background: var(--green-deep);
+        border: 1px solid var(--green-border2);
+        border-radius: 2px;
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 300;
+        padding: 8px 12px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .t-search:focus {
+        border-color: var(--gold-line);
+      }
+      .t-search::placeholder {
+        color: var(--cream-faint);
+      }
+      .f-btn {
+        background: none;
+        border: 1px solid var(--green-border2);
+        color: var(--cream-faint);
+        padding: 7px 12px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.63rem;
+        font-weight: 300;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: all 0.2s;
+      }
+      .f-btn:hover {
+        color: var(--cream-dim);
+      }
+      .f-btn.active {
+        border-color: var(--gold-line);
+        color: var(--gold);
+        background: var(--gold-glow);
+      }
+      .t-tbl {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .t-tbl th {
+        padding: 8px 13px;
+        font-size: 0.58rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--cream-faint);
+        text-align: left;
+        border-bottom: 1px solid var(--green-border);
+        font-weight: 300;
+        background: var(--green-deep);
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      .t-tbl td {
+        padding: 10px 13px;
+        font-size: 0.72rem;
+        border-bottom: 1px solid var(--green-border);
+        font-weight: 300;
+        vertical-align: top;
+        line-height: 1.5;
+      }
+      .t-tbl tr:hover td {
+        background: var(--gold-glow);
+      }
+      .t-key {
+        color: var(--teal);
+        font-family: "DM Mono", monospace;
+        font-size: 0.66rem;
+      }
+      .t-en {
+        color: var(--cream-dim);
+      }
+      .t-ka {
+        color: var(--cream);
+      }
+      .t-ka.miss {
+        color: rgba(201, 76, 76, 0.6);
+        font-style: italic;
+      }
+      .miss-tag {
+        display: inline-block;
+        background: rgba(201, 76, 76, 0.1);
+        color: #e88888;
+        font-size: 0.5rem;
+        padding: 1px 5px;
+        border-radius: 2px;
+        border: 1px solid rgba(201, 76, 76, 0.22);
+        margin-left: 5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .t-edit-btn {
+        background: none;
+        border: none;
+        color: var(--cream-faint);
+        cursor: pointer;
+        font-size: 0.82rem;
+        padding: 2px 5px;
+        transition: color 0.2s;
+      }
+      .t-edit-btn:hover {
+        color: var(--gold);
+      }
+
+      /* Analytics */
+      .an-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+      }
+      .prog-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 4px;
+      }
+      .prog-row {
+      }
+      .prog-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.67rem;
+        margin-bottom: 5px;
+        font-weight: 300;
+      }
+      .prog-name {
+        color: var(--cream-dim);
+      }
+      .prog-pct {
+        color: var(--gold);
+        font-family: "Playfair Display", serif;
+      }
+      .prog-track {
+        height: 3px;
+        background: rgba(245, 240, 232, 0.05);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .prog-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--green-mid), var(--gold));
+        transition: width 1s ease;
+        width: 0;
+      }
+      .donut-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+        padding: 6px 0;
+      }
+      .donut-svg {
+        width: 88px;
+        height: 88px;
+      }
+      .legend {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .leg-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.67rem;
+        font-weight: 300;
+        color: var(--cream-dim);
+      }
+      .leg-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .ev-feed {
+        display: flex;
+        flex-direction: column;
+        margin-top: 4px;
+      }
+      .ev-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--green-border);
+      }
+      .ev-item:last-child {
+        border-bottom: none;
+      }
+      .ev-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        background: var(--green-deep);
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .ev-dot.g {
+        border-color: var(--success);
+      }
+      .ev-dot.t {
+        border-color: var(--teal);
+      }
+      .ev-text {
+        font-size: 0.68rem;
+        font-weight: 300;
+        color: var(--cream-dim);
+        line-height: 1.5;
+      }
+      .ev-time {
+        font-size: 0.58rem;
+        color: var(--cream-faint);
+        margin-top: 2px;
+      }
+
+      /* Modal */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 22, 10, 0.82);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.28s;
+      }
+      .modal-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .modal {
+        background: var(--green-surface);
+        border: 1px solid var(--green-border2);
+        border-radius: 3px;
+        width: 570px;
+        max-width: 90vw;
+        max-height: 84vh;
+        overflow-y: auto;
+        transform: translateY(14px);
+        transition: transform 0.28s;
+        position: relative;
+      }
+      .modal::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+      .modal-overlay.open .modal {
+        transform: translateY(0);
+      }
+      .modal-hd {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 17px 22px;
+        border-bottom: 1px solid var(--green-border);
+      }
+      .modal-ttl {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--cream);
+      }
+      .modal-x {
+        background: none;
+        border: none;
+        color: var(--cream-faint);
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: color 0.2s;
+        line-height: 1;
+      }
+      .modal-x:hover {
+        color: var(--cream);
+      }
+      .modal-bd {
+        padding: 22px;
+      }
+      .modal-ft {
+        padding: 13px 22px;
+        border-top: 1px solid var(--green-border);
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      /* Divider */
+      .divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--green-border2),
+          transparent
+        );
+        margin: 18px 0;
+      }
+
+      /* Toast */
+      .toast-wrap {
+        position: fixed;
+        bottom: 22px;
+        right: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        z-index: 9999;
+      }
+      .toast {
+        background: var(--green-surface);
+        border: 1px solid var(--green-border2);
+        border-left: 2px solid var(--gold);
+        padding: 10px 17px;
+        border-radius: 2px;
+        font-size: 0.7rem;
+        font-weight: 300;
+        color: var(--cream);
+        min-width: 210px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        transform: translateX(110%);
+        transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+        letter-spacing: 0.03em;
+      }
+      .toast.show {
+        transform: translateX(0);
+      }
+      .toast.success {
+        border-left-color: var(--success);
+      }
+      .toast.error {
+        border-left-color: var(--red);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--green-border2);
+        border-radius: 2px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(201, 168, 76, 0.18);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sb-logo">
+        <div class="sb-eyebrow">Admin Panel</div>
+        <div class="sb-name">Batumi <em>Central</em> Park</div>
+        <div class="sb-badge">
+          <span class="status-dot"></span> Site live · bcp.ge
+        </div>
+      </div>
+      <nav class="sb-nav">
+        <div class="sb-sec">Overview</div>
+        <div class="nav-item active" onclick="nav('dashboard', this)">
+          <span class="nav-icon">◈</span> Dashboard
+        </div>
+        <div class="sb-sec">Content</div>
+        <div class="nav-item" onclick="nav('content', this)">
+          <span class="nav-icon">✦</span> Content Editor
+        </div>
+        <div class="nav-item" onclick="nav('gallery', this)">
+          <span class="nav-icon">◫</span> Gallery
+          <span class="nav-badge ok">8</span>
+        </div>
+        <div class="nav-item" onclick="nav('translations', this)">
+          <span class="nav-icon">⌘</span> Translations
+          <span class="nav-badge warn">3!</span>
+        </div>
+        <div class="sb-sec">Reports</div>
+        <div class="nav-item" onclick="nav('analytics', this)">
+          <span class="nav-icon">◑</span> Analytics
+        </div>
+      </nav>
+      <div class="sb-footer">
+        <div class="user-row">
+          <div class="user-av">G</div>
+          <div>
+            <div class="u-name">Giorgi</div>
+            <div class="u-role">Administrator</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+      <div class="topbar">
+        <div class="tb-left">
+          <div class="tb-title" id="tbTitle">Dashboard</div>
+          <div class="tb-bread">
+            BCP Admin → <span id="tbSub">Overview</span>
+          </div>
+        </div>
+        <div class="tb-actions">
+          <button class="btn" onclick="toast('Synced!', 'success')">
+            ↻ Sync
+          </button>
+          <button class="btn">↗ View Site</button>
+          <button class="btn primary" id="mainCta" onclick="ctaAction()">
+            ＋ New Item
+          </button>
+        </div>
+      </div>
+
+      <div class="content">
+        <!-- DASHBOARD -->
+        <div class="page active" id="page-dashboard">
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-top">
+                <span class="kpi-label">Page Views</span
+                ><span class="kpi-icon">◈</span>
+              </div>
+              <div class="kpi-val">12.4K</div>
+              <div class="kpi-sub up">↑ 8.2% this month</div>
+              <div class="kpi-shimmer"></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-top">
+                <span class="kpi-label">Google Rating</span
+                ><span class="kpi-icon">★</span>
+              </div>
+              <div class="kpi-val gold">4.7★</div>
+              <div class="kpi-sub">12,000+ reviews</div>
+              <div class="kpi-shimmer"></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-top">
+                <span class="kpi-label">Languages</span
+                ><span class="kpi-icon">⌘</span>
+              </div>
+              <div class="kpi-val" style="font-size: 1.35rem; padding-top: 4px">
+                EN / KA
+              </div>
+              <div class="kpi-sub up">Bilingual · live</div>
+              <div class="kpi-shimmer"></div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-top">
+                <span class="kpi-label">Missing Translations</span
+                ><span class="kpi-icon">⚑</span>
+              </div>
+              <div class="kpi-val gold" style="font-size: 1.6rem">3</div>
+              <div class="kpi-sub warn">Keys need attention</div>
+              <div class="kpi-shimmer"></div>
+            </div>
+          </div>
+          <div class="two-col">
+            <div class="card card-gold-top">
+              <div class="sec-head">
+                <div>
+                  <span class="sec-eyebrow">Traffic</span>
+                  <div class="sec-title">Visitor <em>Sources</em></div>
+                </div>
+                <span class="sec-aside">Last 30 days</span>
+              </div>
+              <div class="bar-chart">
+                <div class="bar-row">
+                  <span class="bar-label">Google Search</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" data-w="82%"></div>
+                  </div>
+                  <span class="bar-pct">82%</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Google Maps</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" data-w="68%"></div>
+                  </div>
+                  <span class="bar-pct">68%</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Direct</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" data-w="54%"></div>
+                  </div>
+                  <span class="bar-pct">54%</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Social Media</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" data-w="31%"></div>
+                  </div>
+                  <span class="bar-pct">31%</span>
+                </div>
+                <div class="bar-row">
+                  <span class="bar-label">Referral</span>
+                  <div class="bar-track">
+                    <div class="bar-fill" data-w="18%"></div>
+                  </div>
+                  <span class="bar-pct">18%</span>
+                </div>
+              </div>
+            </div>
+            <div class="card card-gold-top">
+              <div class="sec-head">
+                <div>
+                  <span class="sec-eyebrow">Live Log</span>
+                  <div class="sec-title">Recent <em>Activity</em></div>
+                </div>
+              </div>
+              <div class="act-feed">
+                <div class="act-item">
+                  <div class="act-dot g"></div>
+                  <div>
+                    <div class="act-text">
+                      Gallery updated — <strong>Lake Nuri-Geli</strong>
+                    </div>
+                    <div class="act-time">2 hours ago</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot"></div>
+                  <div>
+                    <div class="act-text">
+                      Translation saved — <strong>ka: tips.t1h</strong>
+                    </div>
+                    <div class="act-time">5 hours ago</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot t"></div>
+                  <div>
+                    <div class="act-text">
+                      Dolphinarium detail — content edit
+                    </div>
+                    <div class="act-time">Yesterday</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot r"></div>
+                  <div>
+                    <div class="act-text">
+                      Missing keys flagged — <strong>3 translations</strong>
+                    </div>
+                    <div class="act-time">2 days ago</div>
+                  </div>
+                </div>
+                <div class="act-item">
+                  <div class="act-dot g"></div>
+                  <div>
+                    <div class="act-text">Site published successfully ✓</div>
+                    <div class="act-time">3 days ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-gold-top">
+            <div class="sec-head">
+              <div>
+                <span class="sec-eyebrow">Site</span>
+                <div class="sec-title">Content <em>Status</em></div>
+              </div>
+            </div>
+            <table class="stbl">
+              <thead>
+                <tr>
+                  <th>Section</th>
+                  <th>Type</th>
+                  <th>Modified</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="nm">Hero + About</td>
+                  <td>Text, Stats</td>
+                  <td>3 days ago</td>
+                  <td><span class="stag live">Live</span></td>
+                  <td>
+                    <button
+                      class="row-btn"
+                      onclick="
+                        nav(
+                          'content',
+                          document.querySelector('[onclick*=content]'),
+                        )
+                      "
+                    >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nm">Gallery</td>
+                  <td>8 images</td>
+                  <td>2 hours ago</td>
+                  <td><span class="stag live">Live</span></td>
+                  <td>
+                    <button
+                      class="row-btn"
+                      onclick="
+                        nav(
+                          'gallery',
+                          document.querySelector('[onclick*=gallery]'),
+                        )
+                      "
+                    >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nm">Attractions</td>
+                  <td>6 cards + detail pages</td>
+                  <td>Yesterday</td>
+                  <td><span class="stag live">Live</span></td>
+                  <td>
+                    <button
+                      class="row-btn"
+                      onclick="
+                        nav(
+                          'content',
+                          document.querySelector('[onclick*=content]'),
+                        )
+                      "
+                    >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nm">History Timeline</td>
+                  <td>6 entries</td>
+                  <td>1 week ago</td>
+                  <td><span class="stag live">Live</span></td>
+                  <td>
+                    <button
+                      class="row-btn"
+                      onclick="
+                        nav(
+                          'content',
+                          document.querySelector('[onclick*=content]'),
+                        )
+                      "
+                    >
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nm">Translations</td>
+                  <td>i18n strings</td>
+                  <td>5 hours ago</td>
+                  <td><span class="stag warn">3 Missing</span></td>
+                  <td>
+                    <button
+                      class="row-btn"
+                      onclick="
+                        nav(
+                          'translations',
+                          document.querySelector('[onclick*=translations]'),
+                        )
+                      "
+                    >
+                      Fix
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CONTENT EDITOR -->
+        <div class="page" id="page-content">
+          <div class="card card-gold-top" style="padding: 0; overflow: visible">
+            <div class="etabs">
+              <div class="etab active" onclick="etab('about', this)">About</div>
+              <div class="etab" onclick="etab('attractions', this)">
+                Attractions
+              </div>
+              <div class="etab" onclick="etab('history', this)">History</div>
+              <div class="etab" onclick="etab('tips', this)">Visit Tips</div>
+            </div>
+            <div style="padding: 22px">
+              <!-- ABOUT -->
+              <div class="epanel active" id="ep-about">
+                <div class="frow f2">
+                  <div>
+                    <label class="flabel"
+                      >Badge <span class="lpill">EN</span></label
+                    ><input class="finput" value="Our Story" />
+                  </div>
+                  <div>
+                    <label class="flabel"
+                      >Badge <span class="lpill ka">KA</span></label
+                    ><input
+                      class="finput"
+                      value="ჩვენი ისტორია"
+                      style="
+                        font-family: &quot;Noto Sans Georgian&quot;, sans-serif;
+                      "
+                    />
+                  </div>
+                </div>
+                <div class="frow f2">
+                  <div>
+                    <label class="flabel"
+                      >Section Title <span class="lpill">EN</span></label
+                    ><input
+                      class="finput"
+                      value="A Living Garden in the Heart of Batumi"
+                    />
+                  </div>
+                  <div>
+                    <label class="flabel"
+                      >Section Title <span class="lpill ka">KA</span></label
+                    ><input
+                      class="finput"
+                      value="ცოცხალი ბაღი ბათუმის გულში"
+                      style="
+                        font-family: &quot;Noto Sans Georgian&quot;, sans-serif;
+                      "
+                    />
+                  </div>
+                </div>
+                <div class="divider"></div>
+                <span
+                  class="sec-eyebrow"
+                  style="margin-bottom: 11px; display: block"
+                  >Body Paragraphs — Bilingual</span
+                >
+                <div class="biblock">
+                  <div class="biblock-hd">
+                    <span class="biblock-lbl"
+                      >Paragraph 1
+                      <span style="color: var(--gold)">EN</span></span
+                    >
+                  </div>
+                  <textarea>
+Batumi Central Park, affectionately known as "6 May Park," is the oldest and most beloved green space in all of Adjara. Nestled beside the shimmering Lake Nuri-Geli, it has been the city's living room for over 140 years.</textarea
+                  >
+                </div>
+                <div class="biblock">
+                  <div class="biblock-hd">
+                    <span class="biblock-lbl"
+                      >Paragraph 1
+                      <span
+                        style="
+                          color: var(--teal);
+                          font-family:
+                            &quot;Noto Sans Georgian&quot;, sans-serif;
+                        "
+                        >KA</span
+                      ></span
+                    >
+                  </div>
+                  <textarea
+                    style="
+                      font-family: &quot;Noto Sans Georgian&quot;, sans-serif;
+                    "
+                  >
+ბათუმის ცენტრალური პარკი, სიყვარულით ცნობილი როგორც "6 მაისის პარკი", არის ყველაზე ძველი და საყვარელი მწვანე სივრცე მთელ აჭარაში.</textarea
+                  >
+                </div>
+                <div class="biblock">
+                  <div class="biblock-hd">
+                    <span class="biblock-lbl"
+                      >Paragraph 2
+                      <span style="color: var(--gold)">EN</span></span
+                    >
+                  </div>
+                  <textarea>
+Originally called Alexander's Garden when it was laid out by Prussian landscape artist Resler in 1881, the park grew to cover 78,000 square meters of lush subtropical greenery.</textarea
+                  >
+                </div>
+                <div class="biblock">
+                  <div class="biblock-hd">
+                    <span class="biblock-lbl"
+                      >Paragraph 2
+                      <span
+                        style="
+                          color: var(--teal);
+                          font-family:
+                            &quot;Noto Sans Georgian&quot;, sans-serif;
+                        "
+                        >KA</span
+                      ></span
+                    >
+                  </div>
+                  <textarea
+                    style="
+                      font-family: &quot;Noto Sans Georgian&quot;, sans-serif;
+                    "
+                  >
+თავდაპირველად ალექსანდრეს ბაღად წოდებული, პარკი 1881 წელს პრუსიელმა ლანდშაფტის ოსტატმა რეზლერმა გაშენა.</textarea
+                  >
+                </div>
+                <div class="divider"></div>
+                <span
+                  class="sec-eyebrow"
+                  style="margin-bottom: 11px; display: block"
+                  >Stats Row</span
+                >
+                <div class="frow f3">
+                  <div>
+                    <label class="flabel">Years of History</label
+                    ><input class="finput" value="142" />
+                  </div>
+                  <div>
+                    <label class="flabel">Rating</label
+                    ><input class="finput" value="4.7★" />
+                  </div>
+                  <div>
+                    <label class="flabel">Area</label
+                    ><input class="finput" value="78K" />
+                  </div>
+                </div>
+                <div
+                  style="
+                    margin-top: 16px;
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 8px;
+                  "
+                >
+                  <button class="btn" onclick="toast('Changes discarded')">
+                    Discard
+                  </button>
+                  <button class="btn primary" onclick="saveS('About')">
+                    Save About Section
+                  </button>
+                </div>
+              </div>
+              <!-- ATTRACTIONS -->
+              <div class="epanel" id="ep-attractions">
+                <div class="attr-list" id="attrList"></div>
+                <div style="margin-top: 13px">
+                  <button class="btn" onclick="openAttrM(-1)">
+                    ＋ Add Attraction
+                  </button>
+                </div>
+              </div>
+              <!-- HISTORY -->
+              <div class="epanel" id="ep-history">
+                <div class="hist-list" id="histList"></div>
+                <div style="margin-top: 11px; display: flex; gap: 8px">
+                  <button class="btn" onclick="addHist()">＋ Add Entry</button>
+                  <button
+                    class="btn primary"
+                    onclick="saveS('History Timeline')"
+                  >
+                    Save Timeline
+                  </button>
+                </div>
+              </div>
+              <!-- TIPS -->
+              <div class="epanel" id="ep-tips">
+                <div id="tipsList"></div>
+                <div
+                  style="
+                    margin-top: 13px;
+                    display: flex;
+                    justify-content: flex-end;
+                  "
+                >
+                  <button class="btn primary" onclick="saveS('Visit Tips')">
+                    Save Tips
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GALLERY -->
+        <div class="page" id="page-gallery">
+          <div class="card card-gold-top">
+            <div class="sec-head">
+              <div>
+                <span class="sec-eyebrow">Media</span>
+                <div class="sec-title">Gallery <em>Images</em></div>
+              </div>
+              <span class="sec-aside" id="galCount">8 images</span>
+            </div>
+            <div class="gal-grid" id="galGrid"></div>
+          </div>
+        </div>
+
+        <!-- TRANSLATIONS -->
+        <div class="page" id="page-translations">
+          <div class="card card-gold-top">
+            <div class="sec-head">
+              <div>
+                <span class="sec-eyebrow">i18n</span>
+                <div class="sec-title">Translation <em>Manager</em></div>
+              </div>
+              <span class="sec-aside" style="color: #e88888" id="missingCount"
+                >3 keys missing</span
+              >
+            </div>
+            <div class="trans-toolbar">
+              <input
+                class="t-search"
+                placeholder="Search keys or text…"
+                id="tSearch"
+                oninput="renderTrans()"
+              />
+              <button class="f-btn active" onclick="setF('all', this)">
+                All
+              </button>
+              <button class="f-btn" onclick="setF('missing', this)">
+                Missing
+              </button>
+              <button class="f-btn" onclick="setF('nav', this)">Nav</button>
+              <button class="f-btn" onclick="setF('hero', this)">Hero</button>
+              <button class="f-btn" onclick="setF('attr', this)">Attr</button>
+              <button class="f-btn" onclick="setF('gallery', this)">
+                Gallery
+              </button>
+            </div>
+            <table class="t-tbl">
+              <thead>
+                <tr>
+                  <th style="width: 185px">Key</th>
+                  <th>English</th>
+                  <th>Georgian</th>
+                  <th style="width: 40px"></th>
+                </tr>
+              </thead>
+              <tbody id="tBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ANALYTICS -->
+        <div class="page" id="page-analytics">
+          <div class="an-grid">
+            <div class="card card-gold-top">
+              <div class="sec-head">
+                <div>
+                  <span class="sec-eyebrow">Usage</span>
+                  <div class="sec-title">Most Visited <em>Sections</em></div>
+                </div>
+              </div>
+              <div class="prog-list">
+                <div class="prog-row">
+                  <div class="prog-labels">
+                    <span class="prog-name">Dolphinarium Detail</span
+                    ><span class="prog-pct">34%</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" data-w="34%"></div>
+                  </div>
+                </div>
+                <div class="prog-row">
+                  <div class="prog-labels">
+                    <span class="prog-name">Lake Nuri-Geli</span
+                    ><span class="prog-pct">28%</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" data-w="28%"></div>
+                  </div>
+                </div>
+                <div class="prog-row">
+                  <div class="prog-labels">
+                    <span class="prog-name">Gallery</span
+                    ><span class="prog-pct">22%</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" data-w="22%"></div>
+                  </div>
+                </div>
+                <div class="prog-row">
+                  <div class="prog-labels">
+                    <span class="prog-name">Location / Map</span
+                    ><span class="prog-pct">19%</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" data-w="19%"></div>
+                  </div>
+                </div>
+                <div class="prog-row">
+                  <div class="prog-labels">
+                    <span class="prog-name">About</span
+                    ><span class="prog-pct">15%</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" data-w="15%"></div>
+                  </div>
+                </div>
+                <div class="prog-row">
+                  <div class="prog-labels">
+                    <span class="prog-name">History</span
+                    ><span class="prog-pct">10%</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" data-w="10%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-gold-top">
+              <div class="sec-head">
+                <div>
+                  <span class="sec-eyebrow">Audience</span>
+                  <div class="sec-title">Language <em>Split</em></div>
+                </div>
+              </div>
+              <div class="donut-wrap">
+                <svg class="donut-svg" viewBox="0 0 36 36">
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="14"
+                    fill="none"
+                    stroke="rgba(245,240,232,.05)"
+                    stroke-width="4"
+                  />
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="14"
+                    fill="none"
+                    stroke="url(#dg)"
+                    stroke-width="4"
+                    stroke-dasharray="57 31"
+                    stroke-dashoffset="21"
+                    stroke-linecap="round"
+                  />
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="14"
+                    fill="none"
+                    stroke="#2d5016"
+                    stroke-width="4"
+                    stroke-dasharray="31 57"
+                    stroke-dashoffset="-36"
+                    stroke-linecap="round"
+                  />
+                  <defs>
+                    <linearGradient id="dg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#4a8020" />
+                      <stop offset="100%" stop-color="#c9a84c" />
+                    </linearGradient>
+                  </defs>
+                  <text
+                    x="18"
+                    y="16.5"
+                    text-anchor="middle"
+                    fill="#c9a84c"
+                    font-size="4.8"
+                    font-family="Playfair Display"
+                    font-weight="500"
+                  >
+                    64%
+                  </text>
+                  <text
+                    x="18"
+                    y="21.5"
+                    text-anchor="middle"
+                    fill="rgba(245,240,232,.35)"
+                    font-size="2.9"
+                    font-family="DM Sans"
+                  >
+                    EN visitors
+                  </text>
+                </svg>
+                <div class="legend">
+                  <div class="leg-row">
+                    <div class="leg-dot" style="background: var(--gold)"></div>
+                    English — 64%
+                  </div>
+                  <div class="leg-row">
+                    <div
+                      class="leg-dot"
+                      style="background: var(--green-mid)"
+                    ></div>
+                    Georgian — 36%
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-gold-top">
+              <div class="sec-head">
+                <div>
+                  <span class="sec-eyebrow">Devices</span>
+                  <div class="sec-title">Device <em>Breakdown</em></div>
+                </div>
+              </div>
+              <div class="prog-list">
+                <div class="prog-row">
+                  <div class="prog-labels">
+                    <span class="prog-name">📱 Mobile</span
+                    ><span class="prog-pct">61%</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" data-w="61%"></div>
+                  </div>
+                </div>
+                <div class="prog-row">
+                  <div class="prog-labels">
+                    <span class="prog-name">💻 Desktop</span
+                    ><span class="prog-pct">31%</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" data-w="31%"></div>
+                  </div>
+                </div>
+                <div class="prog-row">
+                  <div class="prog-labels">
+                    <span class="prog-name">📟 Tablet</span
+                    ><span class="prog-pct">8%</span>
+                  </div>
+                  <div class="prog-track">
+                    <div class="prog-fill" data-w="8%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card card-gold-top">
+              <div class="sec-head">
+                <div>
+                  <span class="sec-eyebrow">Log</span>
+                  <div class="sec-title">Site <em>Events</em></div>
+                </div>
+              </div>
+              <div class="ev-feed">
+                <div class="ev-item">
+                  <div class="ev-dot g"></div>
+                  <div>
+                    <div class="ev-text">Gallery updated — new lake photo</div>
+                    <div class="ev-time">2 hours ago</div>
+                  </div>
+                </div>
+                <div class="ev-item">
+                  <div class="ev-dot"></div>
+                  <div>
+                    <div class="ev-text">Translation sync — 5 keys updated</div>
+                    <div class="ev-time">5 hours ago</div>
+                  </div>
+                </div>
+                <div class="ev-item">
+                  <div class="ev-dot t"></div>
+                  <div>
+                    <div class="ev-text">Detail page edit — Dolphinarium</div>
+                    <div class="ev-time">Yesterday</div>
+                  </div>
+                </div>
+                <div class="ev-item">
+                  <div class="ev-dot"></div>
+                  <div>
+                    <div class="ev-text">
+                      SEO meta updated for Georgian pages
+                    </div>
+                    <div class="ev-time">3 days ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="mOv" onclick="closeM(event)">
+      <div class="modal">
+        <div class="modal-hd">
+          <div class="modal-ttl" id="mTtl">Edit</div>
+          <button class="modal-x" onclick="closeM()">×</button>
+        </div>
+        <div class="modal-bd" id="mBd"></div>
+        <div class="modal-ft">
+          <button class="btn" onclick="closeM()">Cancel</button
+          ><button class="btn primary" id="mSave" onclick="">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALLERY MODAL -->
+    <div class="modal-overlay" id="gmOv" onclick="closeGM(event)">
+      <div class="modal">
+        <div class="modal-hd">
+          <div class="modal-ttl" id="gmTtl">Image</div>
+          <button class="modal-x" onclick="closeGM()">×</button>
+        </div>
+        <div class="modal-bd" id="gmBd"></div>
+        <div class="modal-ft">
+          <button class="btn" onclick="closeGM()">Cancel</button
+          ><button class="btn primary" onclick="saveGM()">Save Image</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-wrap" id="tw"></div>
+
+    <script>
+      /* DATA */
+      let attrs = [
+        {
+          id: 0,
+          icon: "🐬",
+          name: "Batumi Dolphinarium",
+          ka: "ბათუმის დელფინარიუმი",
+          sub: "Marine Animal Park · Est. 1975",
+          status: "live",
+        },
+        {
+          id: 1,
+          icon: "🦒",
+          name: "Batumi Zoo",
+          ka: "ბათუმის ზოოპარკი",
+          sub: "City Zoo · Free Entry",
+          status: "live",
+        },
+        {
+          id: 2,
+          icon: "🚣",
+          name: "Lake Nuri-Geli",
+          ka: "ნური-გელის ტბა",
+          sub: "Natural Lake · Depth 8m",
+          status: "live",
+        },
+        {
+          id: 3,
+          icon: "🎠",
+          name: "Children's Rides",
+          ka: "ბავშვთა ატრაქციები",
+          sub: "Amusements & Play",
+          status: "live",
+        },
+        {
+          id: 4,
+          icon: "🌿",
+          name: "Botanical Paths",
+          ka: "ბოტანიკური ბილიკები",
+          sub: "19th Century Landscape",
+          status: "live",
+        },
+        {
+          id: 5,
+          icon: "☕",
+          name: "Cafés & Restaurants",
+          ka: "კაფეები და რესტორნები",
+          sub: "Georgian Cuisine · Coffee",
+          status: "live",
+        },
+      ];
+      let imgs = [
+        {
+          id: 0,
+          cap: "Lake Nuri-Geli",
+          ka: "ნური-გელის ტბა",
+          url: "https://lh3.googleusercontent.com/place-photos/AL8-SNFYGEXF2fT6WDvgFtFxkuB3NQNpxzouozniswVpAfPL6OWK0BuySqCIZFyL-SFWWokxAyzKTSZaBLCSiQsw5mD3ziFMhJB4v8do2TqAiIkTn_PU50MraAjQDFAvrOA9vVdY0HBfOnogvsyumw=s4800-w800-h600",
+        },
+        {
+          id: 1,
+          cap: "Tropical Canopy",
+          ka: "ტროპიკული გადახურვა",
+          url: "https://lh3.googleusercontent.com/place-photos/AL8-SNEtnG9IU4wkm7uWO3rdU1A-6BvN3wGgmkVcXplVq6oFgK09CNPNLwfheC3OPlajGpFJIxnf2f2bHQcRRcmXrEGxjdTuTCsofK7lyEYwMM8H1gipV4YhJzY6It6bedAIv2-Bv2SCtMHuL9s0tEk=s4800-w800-h600",
+        },
+        {
+          id: 2,
+          cap: "Garden Paths",
+          ka: "ბაღის ბილიკები",
+          url: "https://lh3.googleusercontent.com/place-photos/AL8-SNFZdKUmwDRwYkoO2I-gi4XVpNUFt1txWjSF7p4QDbsJ6U4F59oapvYTclBdwvajH8ubd9hn8KxWdDJYS1At7TeyG5K569Kbh6gKKHUhwPNk28AO6fd7qdZ0MkSQLtzOqgYxhwJewSMFSDCt-w=s4800-w800-h600",
+        },
+        {
+          id: 3,
+          cap: "Lush Greenery",
+          ka: "მწვანე სივრცე",
+          url: "https://lh3.googleusercontent.com/place-photos/AL8-SNHCREi-c8mDNA_Qb1KraTJf6PgdwvhcWdRZp45Upa-62xe2g6pA87DYi8lB8k5g4IHzqvMZmDg2Dxzd3gxogXQu-Z-Oowl9VAH1qDLi-F8YIjIJpeqkmuVQIt8N7y_GyM2R9yjRKofVtKdtnxc=s4800-w800-h600",
+        },
+        {
+          id: 4,
+          cap: "Reflections",
+          ka: "ანარეკლები",
+          url: "https://lh3.googleusercontent.com/place-photos/AL8-SNECwQjAbBzPCVKojnvJmIYVHtiWroI3iNjjXT0MOSbfQwUCMzzngqoLBfmP-Uhm-rrFnNA2lCVCo-KgIsAZWRb9AbsESINXLQK5jMI1c6IHgIgbpw4Gm00DCDzU8BuJRG4qP1HgK78Q2Gc_p9Y=s4800-w800-h600",
+        },
+        {
+          id: 5,
+          cap: "Fountain Square",
+          ka: "შადრევნების მოედანი",
+          url: "https://lh3.googleusercontent.com/place-photos/AL8-SNFYGEXF2fT6WDvgFtFxkuB3NQNpxzouozniswVpAfPL6OWK0BuySqCIZFyL-SFWWokxAyzKTSZaBLCSiQsw5mD3ziFMhJB4v8do2TqAiIkTn_PU50MraAjQDFAvrOA9vVdY0HBfOnogvsyumw=s4800-w800-h600",
+        },
+        {
+          id: 6,
+          cap: "City Views",
+          ka: "ქალაქის ხედი",
+          url: "https://lh3.googleusercontent.com/place-photos/AL8-SNEtnG9IU4wkm7uWO3rdU1A-6BvN3wGgmkVcXplVq6oFgK09CNPNLwfheC3OPlajGpFJIxnf2f2bHQcRRcmXrEGxjdTuTCsofK7lyEYwMM8H1gipV4YhJzY6It6bedAIv2-Bv2SCtMHuL9s0tEk=s4800-w800-h600",
+        },
+        {
+          id: 7,
+          cap: "Golden Hour",
+          ka: "ოქროსფერი საღამო",
+          url: "https://lh3.googleusercontent.com/place-photos/AL8-SNFZdKUmwDRwYkoO2I-gi4XVpNUFt1txWjSF7p4QDbsJ6U4F59oapvYTclBdwvajH8ubd9hn8KxWdDJYS1At7TeyG5K569Kbh6gKKHUhwPNk28AO6fd7qdZ0MkSQLtzOqgYxhwJewSMFSDCt-w=s4800-w800-h600",
+        },
+      ];
+      const hist = [
+        {
+          y: "1881",
+          en: "Foundation",
+          ka: "დაარსება",
+          pen: "Construction of Batumi's first public garden begins under Prussian landscape gardener Resler.",
+          pka: "ბათუმის პირველი საზოგადოებრივი ბაღის მშენებლობა იწყება.",
+        },
+        {
+          y: "1884",
+          en: "The Work Pauses",
+          ka: "სამუშაოების შეჩერება",
+          pen: "Resler passes away, construction suspended.",
+          pka: "1884 წელს რეზლერი გარდაიცვლება.",
+        },
+        {
+          y: "1885",
+          en: "French Touch",
+          ka: "ფრანგული შეხება",
+          pen: "French architect Mikhail Dalfons completes the park.",
+          pka: "ფრანგი არქიტექტორი მიხეილ დალფონსი ასრულებს პარკს.",
+        },
+        {
+          y: "1900s",
+          en: "Alexander's Garden",
+          ka: "ალექსანდრეს ბაღი",
+          pen: "Named after Russian Emperor Alexander III.",
+          pka: "რუსეთის იმპერატორ ალექსანდრე III-ის სახელი ეწოდება.",
+        },
+        {
+          y: "1932",
+          en: "Cultural Park Era",
+          ka: "კულტურული პარკის ეპოქა",
+          pen: "Reorganized as Cultural and Recreational Park.",
+          pka: "კულტურისა და დასვენების პარკად გარდაიქმნება.",
+        },
+        {
+          y: "2006",
+          en: "6 May Park",
+          ka: "6 მაისის პარკი",
+          pen: 'Renamed "6 May Park." 12,000+ reviews, 4.7★.',
+          pka: 'ოფიციალურად "6 მაისის პარკად" ირქმევა.',
+        },
+      ];
+      const tips = [
+        {
+          n: "01",
+          en: "Arrive Early",
+          ka: "ადრე მოდით",
+          pen: "Most magical in early morning — misty lake reflections and birdsong.",
+          pka: "პარკი ყველაზე ჯადოსნურია დილის ადრეულ საათებში.",
+        },
+        {
+          n: "02",
+          en: "Free Entry",
+          ka: "შესვლა უფასოა",
+          pen: "Free and open 24/7. Some attractions have separate fees.",
+          pka: "უფასოა და 24/7 ღიაა.",
+        },
+        {
+          n: "03",
+          en: "Stray Dogs",
+          ka: "მიუსაფარი ძაღლები",
+          pen: "Calm and vaccinated by the city. Give them space.",
+          pka: "ქალაქი ჭდეებს ადებს. სივრცე დაუტოვეთ.",
+        },
+        {
+          n: "04",
+          en: "Bring Snacks",
+          ka: "საჭმელი წაიღეთ",
+          pen: "Nearby bakeries sell fresh churchkhela and pastries.",
+          pka: "ახლოს ნანახლელებში ჩურჩხელა და ნამცხვარია.",
+        },
+      ];
+      const trans = [
+        { key: "nav.about", en: "About", ka: "პარკის შესახებ", cat: "nav" },
+        { key: "nav.gallery", en: "Gallery", ka: "გალერეა", cat: "nav" },
+        {
+          key: "nav.attractions",
+          en: "Attractions",
+          ka: "ატრაქციები",
+          cat: "nav",
+        },
+        { key: "nav.history", en: "History", ka: "ისტორია", cat: "nav" },
+        {
+          key: "nav.tips",
+          en: "Visit Tips",
+          ka: "სასარგებლო რჩევები",
+          cat: "nav",
+        },
+        {
+          key: "hero.badge",
+          en: "Since 1881 · Batumi",
+          ka: "1881 წლიდან · ბათუმი",
+          cat: "hero",
+        },
+        {
+          key: "hero.titleEm",
+          en: "Central Park",
+          ka: "ცენტრალური პარკი",
+          cat: "hero",
+        },
+        {
+          key: "hero.cta1",
+          en: "Discover the Park",
+          ka: "პარკის აღმოჩენა",
+          cat: "hero",
+        },
+        { key: "hero.scroll", en: "Scroll", ka: "", cat: "hero" },
+        { key: "attr.learnMore", en: "Learn More", ka: "", cat: "attr" },
+        { key: "detail.back", en: "Back to Park", ka: "", cat: "attr" },
+        {
+          key: "gallery.viewOnMaps",
+          en: "View on Maps",
+          ka: "Maps-ზე ნახვა",
+          cat: "gallery",
+        },
+        {
+          key: "footer.copy",
+          en: "© 2024 Batumi Central Park.",
+          ka: "© 2024 ბათუმის ცენტრალური პარკი.",
+          cat: "footer",
+        },
+      ];
+
+      /* NAV */
+      function nav(p, el) {
+        document
+          .querySelectorAll(".nav-item")
+          .forEach((n) => n.classList.remove("active"));
+        el.classList.add("active");
+        document
+          .querySelectorAll(".page")
+          .forEach((x) => x.classList.remove("active"));
+        document.getElementById("page-" + p).classList.add("active");
+        const T = {
+          dashboard: "Dashboard",
+          content: "Content Editor",
+          gallery: "Gallery Manager",
+          translations: "Translations",
+          analytics: "Analytics",
+        };
+        const S = {
+          dashboard: "Overview",
+          content: "Edit Content",
+          gallery: "Images",
+          translations: "EN / KA",
+          analytics: "Reports",
+        };
+        document.getElementById("tbTitle").textContent = T[p];
+        document.getElementById("tbSub").textContent = S[p];
+        if (p === "content") {
+          renderAttrs();
+          renderHist();
+          renderTips();
+        }
+        if (p === "gallery") renderGal();
+        if (p === "translations") renderTrans();
+        animBars();
+      }
+      function ctaAction() {
+        const p = document
+          .querySelector(".page.active")
+          .id.replace("page-", "");
+        if (p === "gallery") openGM(-1);
+        else if (p === "content") openAttrM(-1);
+        else if (p === "translations") openTransAdd();
+        else toast("Coming soon!");
+      }
+
+      /* EDITOR TABS */
+      function etab(n, el) {
+        document
+          .querySelectorAll(".etab")
+          .forEach((t) => t.classList.remove("active"));
+        el.classList.add("active");
+        document
+          .querySelectorAll(".epanel")
+          .forEach((x) => x.classList.remove("active"));
+        document.getElementById("ep-" + n).classList.add("active");
+      }
+
+      /* ATTRACTIONS */
+      function renderAttrs() {
+        const l = document.getElementById("attrList");
+        l.innerHTML = "";
+        const hd = document.createElement("div");
+        hd.className = "attr-row";
+        hd.style.cssText = "background:var(--green-deep);pointer-events:none;";
+        hd.innerHTML =
+          '<div class="ac" style="font-size:.57rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-faint);">#</div><div class="ac" style="font-size:.57rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-faint);">Name</div><div class="ac" style="font-size:.57rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-faint);">Subtitle</div><div class="ac" style="font-size:.57rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-faint);">Status</div><div class="ac" style="font-size:.57rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-faint);">Actions</div>';
+        l.appendChild(hd);
+        attrs.forEach((a) => {
+          const r = document.createElement("div");
+          r.className = "attr-row";
+          r.innerHTML = `<div class="ac icn">${a.icon}</div><div class="ac nm">${a.name}<br><span style="font-size:.6rem;color:var(--teal);font-weight:300;font-family:'Noto Sans Georgian',sans-serif">${a.ka}</span></div><div class="ac" style="color:var(--cream-faint);font-size:.68rem;">${a.sub}</div><div class="ac"><span class="stag live">${a.status}</span></div><div class="ac act"><button class="ibtn" onclick="openAttrM(${a.id})">✏</button><button class="ibtn del" onclick="delAttr(${a.id})">✕</button></div>`;
+          l.appendChild(r);
+        });
+      }
+      let editAId = null;
+      function openAttrM(id) {
+        editAId = id;
+        const isN = id === -1;
+        const a = isN
+          ? {
+              id: attrs.length,
+              icon: "🌟",
+              name: "",
+              ka: "",
+              sub: "",
+              status: "draft",
+            }
+          : attrs.find((x) => x.id === id);
+        document.getElementById("mTtl").textContent = isN
+          ? "Add Attraction"
+          : `Edit: ${a.name}`;
+        document.getElementById("mBd").innerHTML = `
+    <div class="frow f2"><div><label class="flabel">Icon</label><input class="finput" id="ai" value="${a.icon}" style="font-size:1.1rem;text-align:center;"></div><div><label class="flabel">Status</label><select class="fselect" id="as"><option value="live" ${a.status === "live" ? "selected" : ""}>Live</option><option value="draft" ${a.status === "draft" ? "selected" : ""}>Draft</option></select></div></div>
+    <div class="frow f2"><div><label class="flabel">Name <span class="lpill">EN</span></label><input class="finput" id="an" value="${a.name}"></div><div><label class="flabel">Name <span class="lpill ka">KA</span></label><input class="finput" id="ak" value="${a.ka}" style="font-family:'Noto Sans Georgian',sans-serif"></div></div>
+    <div class="frow"><label class="flabel">Subtitle</label><input class="finput" id="asub" value="${a.sub}"></div>`;
+        document.getElementById("mSave").onclick = saveAttr;
+        document.getElementById("mOv").classList.add("open");
+      }
+      function saveAttr() {
+        const isN = editAId === -1;
+        const u = {
+          id: isN ? attrs.length : editAId,
+          icon: g("ai"),
+          name: g("an"),
+          ka: g("ak"),
+          sub: g("asub"),
+          status: g("as"),
+        };
+        if (isN) attrs.push(u);
+        else {
+          const i = attrs.findIndex((a) => a.id === editAId);
+          attrs[i] = u;
+        }
+        renderAttrs();
+        closeM();
+        toast(isN ? "Attraction added!" : "Updated!", "success");
+      }
+      function delAttr(id) {
+        attrs = attrs.filter((a) => a.id !== id);
+        renderAttrs();
+        toast("Removed", "error");
+      }
+
+      /* HISTORY */
+      function renderHist() {
+        const l = document.getElementById("histList");
+        l.innerHTML = "";
+        hist.forEach((h, i) => {
+          const el = document.createElement("div");
+          el.className = "hist-item";
+          el.innerHTML = `<div class="hist-hd"><input class="yr-inp" value="${h.y}" oninput="hist[${i}].y=this.value"><input class="ht-inp" value="${h.en}" placeholder="EN title" oninput="hist[${i}].en=this.value"><span style="color:var(--green-border2);margin:0 4px;">·</span><input class="ht-inp" value="${h.ka}" style="font-family:'Noto Sans Georgian',sans-serif" oninput="hist[${i}].ka=this.value"><div style="display:flex;gap:4px;margin-left:auto;"><button class="ibtn" onclick="mH(${i},-1)">↑</button><button class="ibtn" onclick="mH(${i},1)">↓</button><button class="ibtn del" onclick="dH(${i})">✕</button></div></div><div class="hist-body"><textarea class="h-ta" oninput="hist[${i}].pen=this.value">${h.pen}</textarea><textarea class="h-ta" style="font-family:'Noto Sans Georgian',sans-serif" oninput="hist[${i}].pka=this.value">${h.pka}</textarea></div>`;
+          l.appendChild(el);
+        });
+      }
+      function mH(i, d) {
+        const j = i + d;
+        if (j < 0 || j >= hist.length) return;
+        [hist[i], hist[j]] = [hist[j], hist[i]];
+        renderHist();
+      }
+      function dH(i) {
+        hist.splice(i, 1);
+        renderHist();
+        toast("Entry removed", "error");
+      }
+      function addHist() {
+        hist.push({
+          y: "2024",
+          en: "New Entry",
+          ka: "ახალი",
+          pen: "",
+          pka: "",
+        });
+        renderHist();
+        toast("Entry added!", "success");
+      }
+
+      /* TIPS */
+      function renderTips() {
+        const l = document.getElementById("tipsList");
+        l.innerHTML = "";
+        tips.forEach((t, i) => {
+          const el = document.createElement("div");
+          el.className = "tip-item";
+          el.innerHTML = `<div class="tip-hd"><span class="tip-num">${t.n}</span><input class="ht-inp" value="${t.en}" oninput="tips[${i}].en=this.value"><span style="color:var(--green-border2);margin:0 4px;">·</span><input class="ht-inp" value="${t.ka}" style="font-family:'Noto Sans Georgian',sans-serif" oninput="tips[${i}].ka=this.value"><div style="display:flex;gap:4px;margin-left:auto;"><button class="ibtn" onclick="mT(${i},-1)">↑</button><button class="ibtn" onclick="mT(${i},1)">↓</button></div></div><div class="tip-body"><div class="tip-col"><label class="flabel" style="margin-bottom:5px;">Body <span class="lpill">EN</span></label><textarea class="finput" style="min-height:58px;font-size:.7rem;line-height:1.6;" oninput="tips[${i}].pen=this.value">${t.pen}</textarea></div><div class="tip-col"><label class="flabel" style="margin-bottom:5px;">Body <span class="lpill ka">KA</span></label><textarea class="finput" style="min-height:58px;font-size:.7rem;line-height:1.6;font-family:'Noto Sans Georgian',sans-serif" oninput="tips[${i}].pka=this.value">${t.pka}</textarea></div></div>`;
+          l.appendChild(el);
+        });
+      }
+      function mT(i, d) {
+        const j = i + d;
+        if (j < 0 || j >= tips.length) return;
+        [tips[i], tips[j]] = [tips[j], tips[i]];
+        renderTips();
+      }
+
+      /* GALLERY */
+      function renderGal() {
+        const grid = document.getElementById("galGrid");
+        grid.innerHTML = "";
+        document.getElementById("galCount").textContent =
+          `${imgs.length} images`;
+        imgs.forEach((g) => {
+          const el = document.createElement("div");
+          el.className = "gm-item";
+          el.innerHTML = `<img class="gm-thumb" src="${g.url}" loading="lazy"><div class="gm-info"><div class="gm-cap">${g.cap}</div><div class="gm-capka">${g.ka}</div><div class="gm-url">${g.url.substring(0, 40)}…</div></div><div class="gm-acts"><button class="ibtn" style="flex:1;width:auto;padding:4px 0;font-size:.63rem;" onclick="openGM(${g.id})">✏ Edit</button><button class="ibtn del" onclick="delImg(${g.id})">✕</button></div>`;
+          grid.appendChild(el);
+        });
+        const add = document.createElement("button");
+        add.className = "gm-add";
+        add.innerHTML = '<span class="gm-plus">＋</span><span>Add Image</span>';
+        add.onclick = () => openGM(-1);
+        grid.appendChild(add);
+      }
+      let editGId = null;
+      function openGM(id) {
+        editGId = id;
+        const isN = id === -1;
+        const g = isN
+          ? { id: imgs.length, cap: "", ka: "", url: "" }
+          : imgs.find((x) => x.id === id);
+        document.getElementById("gmTtl").textContent = isN
+          ? "Add Image"
+          : `Edit: ${g.cap}`;
+        document.getElementById("gmBd").innerHTML =
+          `${!isN ? `<div style="margin-bottom:14px;overflow:hidden;border-radius:2px;"><img src="${g.url}" style="width:100%;height:130px;object-fit:cover;display:block;filter:brightness(.72)"></div>` : ""}<div class="frow f2"><div><label class="flabel">Caption <span class="lpill">EN</span></label><input class="finput" id="gc" value="${g.cap}"></div><div><label class="flabel">Caption <span class="lpill ka">KA</span></label><input class="finput" id="gk" value="${g.ka}" style="font-family:'Noto Sans Georgian',sans-serif"></div></div><div class="frow"><label class="flabel">Image URL</label><input class="finput" id="gu" value="${g.url}" placeholder="https://..."></div>`;
+        document.getElementById("gmOv").classList.add("open");
+      }
+      function saveGM() {
+        const isN = editGId === -1;
+        const u = {
+          id: isN ? imgs.length : editGId,
+          cap: g("gc"),
+          ka: g("gk"),
+          url: g("gu"),
+        };
+        if (isN) imgs.push(u);
+        else {
+          const i = imgs.findIndex((x) => x.id === editGId);
+          imgs[i] = u;
+        }
+        renderGal();
+        closeGM();
+        toast(isN ? "Image added!" : "Image updated!", "success");
+      }
+      function delImg(id) {
+        imgs = imgs.filter((x) => x.id !== id);
+        renderGal();
+        toast("Image removed", "error");
+      }
+
+      /* TRANSLATIONS */
+      let tCat = "all";
+      function renderTrans() {
+        const q = document.getElementById("tSearch").value.toLowerCase();
+        const tb = document.getElementById("tBody");
+        tb.innerHTML = "";
+        const miss = trans.filter((t) => !t.ka).length;
+        document.getElementById("missingCount").textContent =
+          `${miss} keys missing`;
+        trans
+          .filter((t) => {
+            if (tCat === "missing") return !t.ka;
+            if (tCat !== "all") return t.cat === tCat;
+            return true;
+          })
+          .filter(
+            (t) =>
+              !q ||
+              t.key.includes(q) ||
+              t.en.toLowerCase().includes(q) ||
+              (t.ka && t.ka.includes(q)),
+          )
+          .forEach((t) => {
+            const m = !t.ka;
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td><span class="t-key">${t.key}</span>${m ? '<span class="miss-tag">missing</span>' : ""}</td><td class="t-en">${t.en}</td><td class="${m ? "t-ka miss" : "t-ka"}" ${!m ? "style=\"font-family:'Noto Sans Georgian',sans-serif\"" : ""}>${t.ka || "— not translated —"}</td><td><button class="t-edit-btn" onclick="openTransEdit('${t.key}')">✏</button></td>`;
+            tb.appendChild(tr);
+          });
+      }
+      function setF(cat, el) {
+        tCat = cat;
+        document
+          .querySelectorAll(".f-btn")
+          .forEach((b) => b.classList.remove("active"));
+        el.classList.add("active");
+        renderTrans();
+      }
+      function openTransEdit(key) {
+        const t = trans.find((x) => x.key === key);
+        document.getElementById("mTtl").textContent = "Edit Translation";
+        document.getElementById("mBd").innerHTML =
+          `<div class="frow"><label class="flabel">Key</label><input class="finput" value="${t.key}" disabled style="opacity:.42;cursor:not-allowed;"></div><div class="frow"><label class="flabel">English <span class="lpill">EN</span></label><input class="finput" id="ten" value="${t.en}"></div><div class="frow"><label class="flabel">Georgian <span class="lpill ka">KA</span></label><input class="finput" id="tka" value="${t.ka || ""}" style="font-family:'Noto Sans Georgian',sans-serif" placeholder="ქართული…"></div>`;
+        document.getElementById("mSave").onclick = () => {
+          const i = trans.findIndex((x) => x.key === key);
+          trans[i].en = g("ten");
+          trans[i].ka = g("tka");
+          renderTrans();
+          closeM();
+          toast("Translation saved!", "success");
+        };
+        document.getElementById("mOv").classList.add("open");
+      }
+      function openTransAdd() {
+        document.getElementById("mTtl").textContent = "Add Translation Key";
+        document.getElementById("mBd").innerHTML =
+          `<div class="frow"><label class="flabel">Key</label><input class="finput" id="tnk" placeholder="section.key"></div><div class="frow"><label class="flabel">English <span class="lpill">EN</span></label><input class="finput" id="tne"></div><div class="frow"><label class="flabel">Georgian <span class="lpill ka">KA</span></label><input class="finput" id="tnka" style="font-family:'Noto Sans Georgian',sans-serif"></div><div class="frow"><label class="flabel">Category</label><select class="fselect" id="tncat"><option>nav</option><option>hero</option><option>attr</option><option>gallery</option><option>footer</option><option>other</option></select></div>`;
+        document.getElementById("mSave").onclick = () => {
+          const k = g("tnk");
+          if (!k) return toast("Key required", "error");
+          trans.push({ key: k, en: g("tne"), ka: g("tnka"), cat: g("tncat") });
+          renderTrans();
+          closeM();
+          toast("Key added!", "success");
+        };
+        document.getElementById("mOv").classList.add("open");
+      }
+
+      /* MODALS */
+      function closeM(e) {
+        if (e && e.target !== document.getElementById("mOv")) return;
+        document.getElementById("mOv").classList.remove("open");
+      }
+      function closeGM(e) {
+        if (e && e.target !== document.getElementById("gmOv")) return;
+        document.getElementById("gmOv").classList.remove("open");
+      }
+
+      /* UTILS */
+      function g(id) {
+        const el = document.getElementById(id);
+        return el ? el.value : "";
+      }
+      function saveS(n) {
+        toast(`${n} saved!`, "success");
+      }
+      function animBars() {
+        requestAnimationFrame(() => {
+          document
+            .querySelectorAll(".bar-fill[data-w],.prog-fill[data-w]")
+            .forEach((b) => {
+              b.style.width = "0";
+              setTimeout(() => (b.style.width = b.dataset.w), 80);
+            });
+        });
+      }
+
+      /* TOAST */
+      function toast(msg, type = "") {
+        const w = document.getElementById("tw");
+        const t = document.createElement("div");
+        t.className = `toast ${type}`;
+        t.innerHTML = `<span style="opacity:.75">${{ success: "✓", error: "✕", "": "◈" }[type] || "◈"}</span>${msg}`;
+        w.appendChild(t);
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => t.classList.add("show")),
+        );
+        setTimeout(() => {
+          t.classList.remove("show");
+          setTimeout(() => t.remove(), 380);
+        }, 2800);
+      }
+
+      /* KEYBOARD */
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeM();
+          closeGM();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === "s") {
+          e.preventDefault();
+          toast("All changes saved!", "success");
+        }
+      });
+
+      /* INIT */
+      window.addEventListener("load", () => {
+        animBars();
+        setTimeout(animBars, 300);
+      });
+    </script>
+  </body>
+</html>
