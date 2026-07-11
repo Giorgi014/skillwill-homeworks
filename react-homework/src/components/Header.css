@@ -1,0 +1,25 @@
+header {
+  max-width: 380px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 8px 4px;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f2f2f5;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+header .users_length {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #a0a3b1;
+  background: #1c1e26;
+  border: 1px solid #33353f;
+  border-radius: 20px;
+  padding: 6px 14px;
+}
