@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css"
+      integrity="sha512-F/yRpRY8sctKzP7exU5PLGejwg/QtjDX6CIy/41nApe7JqdZgCcCzJTNq9Rcp/XwbeeTGillGevBakruY15pxA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <article class="container">
+      <h1>დავალება</h1>
+
+      <form action="homeworks">
+        <div class="input">
+          <label for="input_value">შეიყვანე დავალება</label>
+          <input
+            type="text"
+            placeholder="შეიყვანეთ დავალება..."
+            name="homework"
+            id="input_value"
+          />
+        </div>
+
+        <button id="search_btn">ძიება</button>
+        <button id="btn">დამატება</button>
+      </form>
+      <article class="controls">
+        <select id="filter_select">
+          <option value="all">ყველა</option>
+          <option value="done">შესრულებული</option>
+          <option value="undone">შეუსრულებელი</option>
+        </select>
+
+        <select id="sort_select">
+          <option value="newest">უახლესი</option>
+          <option value="oldest">უძველესი</option>
+          <option value="ka">ანბანით (ა-ჰ)</option>
+        </select>
+      </article>
+    </article>
+
+    <p class="alert" id="alert"></p>
+
+    <article id="result_cont"></article>
+
+    <script src="script.js"></script>
+  </body>
+</html>
