@@ -1,0 +1,112 @@
+.course_card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.course_card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary);
+}
+
+.course_card_link {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  color: inherit;
+}
+
+.course_card_favorite {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  z-index: 1;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.course_card_favorite:hover {
+  transform: scale(1.08);
+}
+
+.course_card_favorite--active {
+  color: #ff5c7a;
+  border-color: #ff5c7a;
+}
+
+.course_card_icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-accent)
+  );
+  font-size: 1.3rem;
+}
+
+.course_card_title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.course_card_description {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.course_card_instructor {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.course_card_meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.course_card_badge {
+  background: var(--color-surface-2);
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.course_card_duration {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+.course_card_price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-accent);
+  font-size: 1.05rem;
+}

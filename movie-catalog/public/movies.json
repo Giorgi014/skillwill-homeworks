@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Inception",
+    "genre": "Sci-Fi",
+    "year": 2010,
+    "poster": "https://www.kroger.com/product/images/xlarge/front/0088392910612",
+    "description": "A skilled thief enters people's dreams to steal secrets but is given a chance at redemption through an impossible mission."
+  },
+  {
+    "id": 2,
+    "title": "The Dark Knight",
+    "genre": "Action",
+    "year": 2008,
+    "poster": "https://bltwebassets.azureedge.net/production/projects/the-dark-knight/key-art/bb7415bc-fbe4-4a7d-bc86-d7996356af32.png",
+    "description": "Batman faces the Joker, a criminal mastermind determined to plunge Gotham City into chaos."
+  },
+  {
+    "id": 3,
+    "title": "Interstellar",
+    "genre": "Sci-Fi",
+    "year": 2014,
+    "poster": "https://m.media-amazon.com/images/I/91vIHsL-zjL._AC_UF894,1000_QL80_.jpg",
+    "description": "A team of astronauts travels through a wormhole in search of a new home for humanity."
+  },
+  {
+    "id": 4,
+    "title": "The Shawshank Redemption",
+    "genre": "Drama",
+    "year": 1994,
+    "poster": "https://i1.sndcdn.com/artworks-000186563399-6nhadc-t500x500.jpg",
+    "description": "A banker sentenced to life in prison forms an unlikely friendship while never losing hope."
+  },
+  {
+    "id": 5,
+    "title": "The Matrix",
+    "genre": "Sci-Fi",
+    "year": 1999,
+    "poster": "https://m.media-amazon.com/images/I/613ypTLZHsL._AC_UF1000,1000_QL80_.jpg",
+    "description": "A hacker discovers that reality is a simulation and joins the fight against intelligent machines."
+  },
+  {
+    "id": 6,
+    "title": "Avengers: Endgame",
+    "genre": "Superhero",
+    "year": 2019,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_FMjpg_UX1000_.jpg",
+    "description": "The Avengers assemble one final time to reverse the devastating effects caused by Thanos."
+  },
+  {
+    "id": 7,
+    "title": "Gladiator",
+    "genre": "Historical",
+    "year": 2000,
+    "poster": "https://cdn11.bigcommerce.com/s-lj8wphc2lt/images/stencil/1280x1280/products/712/1779/gladiator-cover__78287.1761776117.jpg?c=2",
+    "description": "A Roman general seeks revenge after being betrayed and forced into slavery."
+  },
+  {
+    "id": 8,
+    "title": "Parasite",
+    "genre": "Thriller",
+    "year": 2019,
+    "poster": "https://i.ytimg.com/vi/SEUXfv87Wpk/sddefault.jpg",
+    "description": "A poor family gradually infiltrates the lives of a wealthy household with unexpected consequences."
+  },
+  {
+    "id": 9,
+    "title": "Forrest Gump",
+    "genre": "Drama",
+    "year": 1994,
+    "poster": "https://public-website-assets.paramountpictures.com/paramount2025/s3fs-public/styles/poster_medium/public/forrestgump_2019update_en_800x1200.jpg?itok=wqyuMS2H",
+    "description": "A kind-hearted man unknowingly influences several defining moments in American history."
+  },
+  {
+    "id": 10,
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "genre": "Fantasy",
+    "year": 2001,
+    "poster": "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "description": "A young hobbit begins a perilous journey to destroy a powerful ring before evil claims it."
+  }
+]

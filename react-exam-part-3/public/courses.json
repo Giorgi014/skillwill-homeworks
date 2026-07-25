@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "icon": "🖥️",
+    "title": "Front-End საფუძვლები",
+    "description": "HTML, CSS და JavaScript-ის საწყისები — შენი პირველი ვებგვერდიდან რეალურ პროექტამდე.",
+    "level": "დამწყები",
+    "duration": "8 კვირა",
+    "price": 450,
+    "instructor": "ნინო ბერიძე",
+    "category": "Web Development"
+  },
+  {
+    "id": 2,
+    "icon": "⚛️",
+    "title": "React & თანამედროვე UI",
+    "description": "კომპონენტები, Hooks, როუტინგი და state management React-ის ეკოსისტემაში.",
+    "level": "საშუალო",
+    "duration": "10 კვირა",
+    "price": 650,
+    "instructor": "გიორგი გუგუნავა",
+    "category": "Web Development"
+  },
+  {
+    "id": 3,
+    "icon": "🎨",
+    "title": "UI/UX დიზაინი",
+    "description": "Figma-ში ინტერფეისის დაპროექტება, ტიპოგრაფია და მომხმარებლის გამოცდილების პრინციპები.",
+    "level": "დამწყები",
+    "duration": "6 კვირა",
+    "price": 400,
+    "instructor": "მარიამ ლომიძე",
+    "category": "Design"
+  },
+  {
+    "id": 4,
+    "icon": "🗄️",
+    "title": "Back-End Node.js-ით",
+    "description": "სერვერული აპლიკაციები, REST API-ები და მონაცემთა ბაზებთან მუშაობა.",
+    "level": "საშუალო",
+    "duration": "10 კვირა",
+    "price": 650,
+    "instructor": "ლუკა კვარაცხელია",
+    "category": "Web Development"
+  },
+  {
+    "id": 5,
+    "icon": "📱",
+    "title": "React Native — მობილური აპები",
+    "description": "ერთი კოდბაზით iOS და Android აპლიკაციების შექმნა React-ის ცოდნაზე დაყრდნობით.",
+    "level": "მაღალი",
+    "duration": "9 კვირა",
+    "price": 700,
+    "instructor": "დავით მამულაშვილი",
+    "category": "Mobile Development"
+  },
+  {
+    "id": 6,
+    "icon": "🧠",
+    "title": "JavaScript ალგორითმები",
+    "description": "მონაცემთა სტრუქტურები და ალგორითმები JavaScript-ში, გასაუბრებისთვის მოსამზადებლად.",
+    "level": "საშუალო",
+    "duration": "7 კვირა",
+    "price": 500,
+    "instructor": "ნინო ბერიძე",
+    "category": "Computer Science"
+  }
+]

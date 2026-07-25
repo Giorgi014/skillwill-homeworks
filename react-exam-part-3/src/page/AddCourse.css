@@ -1,0 +1,122 @@
+.add_course_page {
+  padding-block: 64px;
+}
+
+.add_course_header {
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+
+.add_course_header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+.add_course_header p {
+  color: var(--color-text-muted);
+}
+
+.add_course_form {
+  max-width: 640px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form_row {
+  display: flex;
+  gap: 20px;
+}
+
+.form_row .form_field {
+  flex: 1;
+}
+
+.form_field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form_field label,
+.form_field_label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--color-text);
+}
+
+.form_field input,
+.form_field textarea,
+.form_field select {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  resize: vertical;
+}
+
+.form_field input::placeholder,
+.form_field textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form_field input:focus-visible,
+.form_field textarea:focus-visible,
+.form_field select:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.form_error {
+  color: #ff8b8b;
+  font-size: 0.82rem;
+}
+
+.icon_picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.icon_picker_option {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.icon_picker_option:hover {
+  transform: translateY(-1px);
+}
+
+.icon_picker_option--active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-dim);
+}
+
+@media (max-width: 640px) {
+  .form_row {
+    flex-direction: column;
+  }
+
+  .add_course_form {
+    padding: 24px;
+  }
+}
