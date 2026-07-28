@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(238, 238, 238, 1);
+}
+
+.app {
+  margin: 120px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.card_cont {
+  width: 360px;
+  height: 528px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.card_cont img {
+  width: 100%;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  max-height: 216px;
+}
+
+.card_cont .card_info {
+  width: 100%;
+  padding: 30px 24px;
+}
+
+h2 {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 25px;
+  letter-spacing: 1%;
+  color: rgba(8, 31, 50, 1);
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  letter-spacing: 0%;
+  color: rgba(110, 121, 140, 1);
+  margin: 24px auto;
+}
+
+.nutrition {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nutrition p {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 25px;
+  letter-spacing: 0%;
+  color: rgba(165, 173, 187, 1);
+  margin-bottom: 32px;
+}
+
+.order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order .prices {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.order .prices p {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 25px;
+  letter-spacing: 0%;
+  color: rgba(8, 31, 50, 1);
+}
+
+.order .prices del {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0%;
+  text-decoration: line-through;
+  color: rgba(248, 89, 59, 1);
+}
+
+button {
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 25px;
+  letter-spacing: 18%;
+  text-align: center;
+  background-color: rgba(46, 204, 113, 1);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 1);
+}
