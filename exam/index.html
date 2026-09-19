@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ka">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TechFlow Solutions - ციფრული ინოვაციების პლატფორმა</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="header-container">
+        <div class="logo">Tech<span>Flow</span></div>
+        <nav class="nav-links">
+          <a href="#hero">მთავარი</a>
+          <a href="#calculator">კალკულატორი</a>
+          <a href="#features">სერვისები</a>
+          <a href="#contact">კონტაქტი</a>
+        </nav>
+        <button class="btn btn-secondary">შესვლა</button>
+      </div>
+    </header>
+
+    <section id="hero" class="hero-section">
+      <div class="hero-wrapper">
+        <div class="hero-content">
+          <span class="badge">ინოვაცია 2026</span>
+          <h1>მართე შენი ციფრული ბიზნესი მარტივად და ეფექტურად</h1>
+          <p>
+            TechFlow გთავაზობთ თანამედროვე ღრუბლოვან გადაწყვეტილებებს, AI
+            ანალიტიკასა და უსაფრთხოების მაღალ სტანდარტებს ერთ პლატფორმაზე.
+          </p>
+          <div class="hero-actions">
+            <a href="#calculator" class="btn btn-primary">დაიწყე ახლავე</a>
+            <a href="#features" class="btn btn-outline">გაიგე მეტი</a>
+          </div>
+        </div>
+
+        <div class="hero-image-container">
+          <img
+            src="images/hero-banner.webp"
+            id="main-hero-img"
+            class="hero-img"
+            alt="TechFlow Banner"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="calculator-section">
+      <div class="calc-container">
+        <div class="section-title">
+          <h2>ტარიფის და ლიცენზიის კალკულატორი</h2>
+          <p>
+            გაიანგარიშეთ ყოველთვიური ღირებულება მომხმარებლების რაოდენობისა და
+            პაკეტის მიხედვით
+          </p>
+        </div>
+
+        <div class="calc-card">
+          <div class="form-group">
+            <label for="plan-select">აირჩიეთ პაკეტი:</label>
+            <select id="plan-select" class="form-control">
+              <option value="49">Standard Plan ($49 / თვე)</option>
+              <option value="99" selected>Pro Plan ($99 / თვე)</option>
+              <option value="199">Enterprise Plan ($199 / თვე)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="user-count">მომხმარებლების რაოდენობა:</label>
+            <input
+              type="number"
+              id="user-count"
+              class="form-control"
+              value="5"
+              min="1"
+              max="100"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="month-count">ხანგრძლივობა (თვე):</label>
+            <input
+              type="number"
+              id="month-count"
+              class="form-control"
+              value="12"
+              min="1"
+              max="36"
+            />
+          </div>
+
+          <button id="calc-btn" class="btn btn-calc">გაანგარიშება</button>
+
+          <div class="result-box">
+            <span>საბოლოო ღირებულება:</span>
+            <h3 id="total-price-display">$ --</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features-section">
+      <div class="features-container">
+        <div class="section-title">
+          <h2>ჩვენი ძირითადი სერვისები</h2>
+          <p>
+            მაღალი წარმადობის გადაწყვეტილებები თქვენი მასშტაბირებადი
+            ბიზნესისთვის
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="card-icon">⚡</div>
+            <h3>ღრუბლოვანი არქიტექტურა</h3>
+            <p>
+              ულტრა სწრაფი სერვერული ინფრასტრუქტურა 99.99% ხელმისაწვდომობის
+              გარანტიით.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="card-icon">🧠</div>
+            <h3>AI ანალიტიკა</h3>
+            <p>
+              ხელოვნური ინტელექტის ალგორითმები თქვენი მონაცემების ავტომატური
+              ანალიზისთვის.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="card-icon">🛡️</div>
+            <h3>კიბერუსაფრთხოება</h3>
+            <p>
+              მონაცემთა მრავალდონიანი დაშიფვრა და რეალურ დროში საფრთხეების
+              მონიტორინგი.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <p>&copy; 2026 TechFlow Solutions. ყველა უფლება დაცულია.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
